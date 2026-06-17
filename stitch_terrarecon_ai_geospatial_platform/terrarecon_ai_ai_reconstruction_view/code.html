@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reconstruction | TerraRecon AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        
+        .slider-handle {
+            cursor: ew-resize;
+            transition: transform 0.1s ease;
+        }
+        .slider-handle:active {
+            transform: scale(1.1);
+        }
+        
+        /* Custom scrollbar for data-heavy sections */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E5E1D3;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #737686;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#0f55d2",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container": "#efeeea",
+                    "on-secondary-container": "#006e6e",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-surface-variant": "#434654",
+                    "surface-container-highest": "#e3e2df",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#cae6ff",
+                    "primary": "#0043ae",
+                    "on-tertiary-fixed": "#001e30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-high": "#e9e8e4",
+                    "tertiary-fixed-dim": "#90cdfd",
+                    "secondary": "#006a6a",
+                    "outline": "#737686",
+                    "on-surface": "#1b1c1a",
+                    "surface": "#faf9f5",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e3e2df",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#410002",
+                    "on-tertiary-container": "#c4e3ff",
+                    "surface-dim": "#dbdad6",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#005076",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "inverse-surface": "#2f312e",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1a5ad7",
+                    "on-tertiary": "#ffffff",
+                    "background": "#faf9f5",
+                    "tertiary-container": "#236893",
+                    "on-tertiary-fixed-variant": "#004b70",
+                    "on-primary-container": "#d7dfff",
+                    "on-primary-fixed": "#001849",
+                    "on-primary-fixed-variant": "#003fa5",
+                    "secondary-fixed": "#93f2f2",
+                    "on-background": "#1b1c1a",
+                    "outline-variant": "#c3c6d6",
+                    "surface-bright": "#faf9f5",
+                    "secondary-container": "#90efef",
+                    "on-secondary-fixed-variant": "#004f4f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sidebar-width": "260px",
+                    "md": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 bottom-0 w-[260px] flex flex-col py-lg z-50 bg-surface-container border-r border-outline-variant">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">satellite_alt</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TerraRecon AI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Enterprise EO Platform</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span class="font-label-md text-label-md">Upload</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">filter_drama</span>
+<span class="font-label-md text-label-md">Cloud Detection</span>
+</a>
+<!-- Active State: Reconstruction -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary-container/10 border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">compare</span>
+<span class="font-label-md text-label-md font-bold">Reconstruction</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant/30 flex flex-col gap-1">
+<button class="mx-md mb-md py-2 px-4 bg-primary text-white rounded font-label-md text-label-md hover:bg-primary-container transition-colors">
+                Process New Imagery
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[260px] min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="h-16 flex justify-between items-center px-lg bg-surface/80 backdrop-blur-md sticky top-0 z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-sm focus:ring-1 focus:ring-primary" placeholder="Search datasets, reconstructions, or coordinates..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container transition-colors rounded-full">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container transition-colors rounded-full">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:bg-surface-container p-1 rounded-lg transition-colors">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface">Dr. Aris Thorne</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Senior Analyst</p>
+</div>
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a senior scientific researcher in a modern, brightly lit office environment. The image is crisp, using a clean light-mode aesthetic with soft focus on the background. The researcher is wearing professional attire, and the lighting is even and natural, reflecting a serious yet approachable academic persona." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCeWfds-cfbbeCdhj6KdON4D7Njk-X3FoQ5oNC5KP5X-VmbNI58EJ6VC3RIsA9c8hkEx2N_mZCLDPgCY9q9A6Us1az43N2k8I7xlririWa4_pDgRjQeDcAIWLvoKDUhZhPErUIXSABoE9nOa2kpe_CJInWhzP0f8t492366Y322QFk83FoboLfLyoAHy5BPKLizVuIsK4Y7XsiFJBjKv_yl1FxhekoXbUOJ71mK_BhSEC3TXfDf2GgR2ON7Y5Vezr4lVTwEPaew-a9"/>
+</div>
+</div>
+</header>
+<!-- Page Header -->
+<section class="px-lg py-md border-b border-outline-variant flex justify-between items-end bg-surface">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant mb-1">
+<span class="font-label-md text-label-md uppercase tracking-widest">Project Alpha-9</span>
+<span class="text-outline-variant">/</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Amazon Basin</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Reconstruction Analysis</h2>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                    Share Analysis
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded font-label-md text-label-md hover:shadow-lg transition-all active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Analysis Task
+                </button>
+</div>
+</section>
+<!-- Main Workspace Grid -->
+<div class="flex-1 p-lg grid grid-cols-12 gap-lg overflow-hidden">
+<!-- Comparison Viewer (Main Canvas) -->
+<div class="col-span-9 flex flex-col gap-lg">
+<div class="relative flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden group">
+<!-- Before/After Labels -->
+<div class="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant shadow-sm">
+<span class="font-label-md text-label-md text-on-surface">BEFORE: Cloud-Obscured</span>
+</div>
+<div class="absolute top-4 right-4 z-10 bg-primary/10 backdrop-blur-sm px-3 py-1 rounded-full border border-primary/20 shadow-sm">
+<span class="font-label-md text-label-md text-primary">AFTER: AI Reconstructed</span>
+</div>
+<!-- Comparison Container -->
+<div class="relative w-full h-full select-none overflow-hidden cursor-col-resize" id="comparison-container">
+<!-- After Image (Bottom) -->
+<div class="absolute inset-0">
+<img class="w-full h-full object-cover" data-alt="A high-resolution satellite image of a lush Amazon rainforest canopy, showing vibrant greens and intricate river patterns. The image is perfectly clear, sharp, and free of any cloud cover, representing a state-of-the-art AI-driven visual reconstruction. The lighting is bright and overhead, highlighting the dense texture of the vegetation in a scientific light-mode style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhfLyuYvrmJyLfInfH1tsp4SZji-wu6Qw3bQrAxBs2vCN2SUSHj3v2ixKA99xROTlT0KrNKt4ZMS6ElCasAOo24AXsfL64Kzepz4xQtozk5ODatYvJHNWzo4IG1xW8pGE-hGxRv8BoHfPSUpRAXrdxDnIanK5cddzc3FntqQLVhF-h5cNVZ8aZM36kjPLaHBhNfUHYddUh8Y5qb67q-d14bqNqij_ORw5FJpRElwCqvGSaiGGbafWaXrFrYeM1m9iCvNN-lVFbs7n-"/>
+</div>
+<!-- Before Image (Top, Clipped) -->
+<div class="absolute inset-0 overflow-hidden" id="before-image-layer" style="width: 50%;">
+<img class="w-full h-full object-cover max-w-none" data-alt="A satellite view of the Amazon rainforest significantly obscured by heavy, white, cumulus cloud cover and hazy atmospheric noise. The clouds block large portions of the terrain, creating a challenging dataset for observation. The aesthetic is realistic and clinical, consistent with raw atmospheric satellite data used for scientific analysis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpN2Ze9DO0bg5K6a-yZxx0T2tpHDP4paMoadeDV32k_aNS4kQEhou_ujV63DI7yUjxu_5oXx_XQ7h0ZflFnZwqs33kSwG7LJfN_uSL_cK2oWgRgDSSusQJqlW5Vxu-bK4U6pnkdBCtoLyHGFHElgeknYVTMxk7I8esy_W8DPklKSkQBQyOK298AMJ-aCfdzkWFiBaF0BCyIY0A6HXbQ18SFJSiMs5alziUojFti5eTz7c5DK86Y15l9oNdKYcWjLNaa5vHshqYiW8I" style="width: calc(100% * (1 / 0.5));"/>
+</div>
+<!-- Divider Slider -->
+<div class="absolute inset-y-0 left-1/2 w-0.5 bg-white shadow-[0_0_10px_rgba(0,0,0,0.3)] z-20" id="slider-line">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-primary text-primary">
+<span class="material-symbols-outlined">unfold_more</span>
+</div>
+</div>
+</div>
+<!-- Floating Map HUD (Glassmorphism) -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-white/70 backdrop-blur-md px-6 py-3 rounded-full border border-white/50 shadow-xl z-30">
+<div class="flex items-center gap-2 pr-4 border-r border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-mono-data text-mono-data">3.4653° S, 62.2159° W</span>
+</div>
+<div class="flex items-center gap-2 pr-4 border-r border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary">calendar_today</span>
+<span class="font-mono-data text-mono-data">Acquired: 2024-10-12</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">zoom_in</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">zoom_out</span></button>
+<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">layers</span></button>
+</div>
+</div>
+</div>
+<!-- Action Bar -->
+<div class="bg-surface border border-outline-variant rounded-xl p-4 flex justify-between items-center">
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                            Download Reconstructed TIFF
+                        </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">image</span>
+                            Export PNG
+                        </button>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-secondary text-white rounded font-label-md text-label-md hover:opacity-90 transition-all">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+                        Generate Quality Report
+                    </button>
+</div>
+</div>
+<!-- Metrics Sidebar (Bento Style) -->
+<div class="col-span-3 flex flex-col gap-lg overflow-y-auto">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Reconstruction Metrics</h3>
+<!-- Metric Card 1 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant">Reconstruction Accuracy</span>
+<span class="material-symbols-outlined text-primary opacity-50">verified</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">98.5%</span>
+<span class="text-on-secondary-container bg-secondary-container px-1.5 py-0.5 rounded text-[10px] font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+                            +0.2%
+                        </span>
+</div>
+<div class="w-full bg-surface-container h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full" style="width: 98.5%"></div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant">Quality Score (SSIM)</span>
+<span class="material-symbols-outlined text-secondary opacity-50">high_quality</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">0.94</span>
+<span class="text-on-surface-variant font-mono-data text-[11px]">/ 1.00</span>
+</div>
+<!-- Sparkline -->
+<div class="h-12 w-full mt-2 relative">
+<svg class="w-full h-full" viewbox="0 0 100 30">
+<path d="M0,25 L10,22 L20,24 L30,18 L40,20 L50,15 L60,17 L70,12 L80,14 L90,8 L100,10" fill="none" stroke="#006a6a" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+</svg>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<span class="font-label-md text-label-md text-on-surface-variant">Recovered Area</span>
+<span class="material-symbols-outlined text-tertiary opacity-50">map</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-on-surface">124</span>
+<span class="text-on-surface-variant font-mono-data text-[14px]">km²</span>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-1">Calculated from 1,420 tiles reconstructed via GAN-v4.</p>
+</div>
+<!-- Technical Specs Panel -->
+<div class="mt-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Technical Parameters</h3>
+<div class="bg-surface-container-low rounded-xl p-md flex flex-col gap-3">
+<div class="flex justify-between items-center py-1 border-b border-outline-variant/30">
+<span class="text-body-sm text-on-surface-variant">Resolution</span>
+<span class="font-mono-data text-mono-data">0.5m/px</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-outline-variant/30">
+<span class="text-body-sm text-on-surface-variant">Model Version</span>
+<span class="font-mono-data text-mono-data">Recon-v4.2-E</span>
+</div>
+<div class="flex justify-between items-center py-1 border-b border-outline-variant/30">
+<span class="text-body-sm text-on-surface-variant">Spectral Bands</span>
+<span class="font-mono-data text-mono-data">RGB + NIR</span>
+</div>
+<div class="flex justify-between items-center py-1">
+<span class="text-body-sm text-on-surface-variant">Process Time</span>
+<span class="font-mono-data text-mono-data">42.8s</span>
+</div>
+</div>
+</div>
+<!-- Status Activity -->
+<div class="mt-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Audit Log</h3>
+<div class="flex flex-col gap-4 pl-2 border-l-2 border-surface-container-high ml-1">
+<div class="relative">
+<div class="absolute -left-[13px] top-1 w-2 h-2 rounded-full bg-primary"></div>
+<p class="text-body-sm font-medium">Reconstruction Complete</p>
+<p class="text-[10px] text-on-surface-variant">14:02 UTC - System AI</p>
+</div>
+<div class="relative opacity-60">
+<div class="absolute -left-[13px] top-1 w-2 h-2 rounded-full bg-outline"></div>
+<p class="text-body-sm">Atmospheric Correction</p>
+<p class="text-[10px] text-on-surface-variant">13:58 UTC - Core-v2</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto w-full py-xl px-lg flex flex-col md:flex-row justify-between items-center gap-4 border-t border-surface-variant bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row items-center gap-4">
+<span class="font-label-md text-label-md font-bold text-on-surface">TerraRecon AI</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 TerraRecon AI. Scientific Earth Observation Systems.</p>
+</div>
+<div class="flex gap-xl">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">API Documentation</a>
+</div>
+</footer>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('comparison-container');
+            const beforeLayer = document.getElementById('before-image-layer');
+            const sliderLine = document.getElementById('slider-line');
+            const beforeImg = beforeLayer.querySelector('img');
+
+            let isResizing = false;
+
+            const updateComparison = (x) => {
+                const rect = container.getBoundingClientRect();
+                let position = ((x - rect.left) / rect.width) * 100;
+                
+                // Constraints
+                if (position < 0) position = 0;
+                if (position > 100) position = 100;
+
+                beforeLayer.style.width = `${position}%`;
+                sliderLine.style.left = `${position}%`;
+                
+                // Adjust before image scale to maintain alignment
+                // Formula: Original Image Width * (1 / Current Clipping Ratio)
+                // However, since we use object-cover, it's easier to just keep img 100% width of parent container
+                // but the parent container is shrinking. So the image inside must stay at the container's original full width.
+                beforeImg.style.width = `${rect.width}px`;
+            };
+
+            const startResize = (e) => {
+                isResizing = true;
+                handleResize(e);
+            };
+
+            const stopResize = () => {
+                isResizing = false;
+            };
+
+            const handleResize = (e) => {
+                if (!isResizing) return;
+                const clientX = e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+                updateComparison(clientX);
+            };
+
+            container.addEventListener('mousedown', startResize);
+            window.addEventListener('mouseup', stopResize);
+            window.addEventListener('mousemove', handleResize);
+
+            container.addEventListener('touchstart', startResize);
+            window.addEventListener('touchend', stopResize);
+            window.addEventListener('touchmove', handleResize);
+
+            // Initial alignment
+            window.addEventListener('resize', () => updateComparison(container.getBoundingClientRect().left + container.offsetWidth / 2));
+            setTimeout(() => updateComparison(container.getBoundingClientRect().left + container.offsetWidth / 2), 100);
+        });
+    </script>
+</body></html>

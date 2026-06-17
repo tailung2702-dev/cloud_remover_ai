@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TerraRecon AI | Enterprise EO Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#0f55d2",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container": "#efeeea",
+                    "on-secondary-container": "#006e6e",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-surface-variant": "#434654",
+                    "surface-container-highest": "#e3e2df",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#cae6ff",
+                    "primary": "#0043ae",
+                    "on-tertiary-fixed": "#001e30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-high": "#e9e8e4",
+                    "tertiary-fixed-dim": "#90cdfd",
+                    "secondary": "#006a6a",
+                    "outline": "#737686",
+                    "on-surface": "#1b1c1a",
+                    "surface": "#faf9f5",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e3e2df",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#c4e3ff",
+                    "surface-dim": "#dbdad6",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#005076",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "inverse-surface": "#2f312e",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1a5ad7",
+                    "on-tertiary": "#ffffff",
+                    "background": "#faf9f5",
+                    "tertiary-container": "#236893",
+                    "on-tertiary-fixed-variant": "#004b70",
+                    "on-primary-container": "#d7dfff",
+                    "on-primary-fixed": "#001849",
+                    "on-primary-fixed-variant": "#003fa5",
+                    "secondary-fixed": "#93f2f2",
+                    "on-background": "#1b1c1a",
+                    "outline-variant": "#c3c6d6",
+                    "surface-bright": "#faf9f5",
+                    "secondary-container": "#90efef",
+                    "on-secondary-fixed-variant": "#004f4f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sidebar-width": "260px",
+                    "md": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-well {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F4F4F0 100%);
+            border: 1px solid #E5E1D3;
+        }
+        .glass-hud {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Left Side: Login Form -->
+<main class="w-full md:w-[500px] lg:w-[600px] h-full flex flex-col bg-surface-container-lowest z-10 shadow-xl">
+<!-- Header/Logo Area -->
+<div class="px-xl py-xl">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">satellite_alt</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TerraRecon</h1>
+<p class="font-label-md text-label-md text-on-surface-variant tracking-wider uppercase">Enterprise EO Platform</p>
+</div>
+</div>
+</div>
+<!-- Login Content -->
+<div class="flex-grow flex items-center justify-center px-xl">
+<div class="w-full max-w-sm">
+<div class="mb-xl"><h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Transform Cloud-Covered Imagery into Actionable Intelligence</h2><p class="font-body-md text-body-md text-on-surface-variant">Leverage advanced Generative AI to reconstruct satellite imagery and unlock critical geospatial insights.</p></div>
+<form class="space-y-sm">
+<!-- Email Field -->
+<div class="space-y-base">
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">CORPORATE EMAIL</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">mail</span>
+<input class="w-full h-[40px] pl-10 pr-md bg-surface-container-low border border-outline-variant rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" id="email" name="email" placeholder="analyst@organization.gov" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-base">
+<div class="flex justify-between items-end">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">SECURITY KEY</label>
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant text-[18px]">lock</span>
+<input class="w-full h-[40px] pl-10 pr-md bg-surface-container-low border border-outline-variant rounded focus:ring-1 focus:ring-primary focus:border-primary font-body-md text-body-md transition-all outline-none" id="password" name="password" placeholder="••••••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-md">
+<button class="w-full h-[44px] bg-primary hover:bg-primary-container text-white font-label-md text-label-md rounded transition-all flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]" type="submit">
+                                INITIALIZE SESSION
+                                <span class="material-symbols-outlined text-[18px]">login</span>
+</button>
+</div>
+</form>
+<!-- Secondary Actions -->
+<div class="mt-xl pt-xl border-t border-surface-variant flex flex-col gap-sm">
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center">
+                            New organization? <a class="text-primary font-bold hover:underline" href="#">Request Platform Access</a>
+</p>
+<div class="flex justify-center gap-md">
+<button class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">help_center</span>
+                                Support
+                            </button>
+<button class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">language</span>
+                                Status
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="px-xl py-lg">
+<div class="flex flex-col gap-2">
+<p class="font-body-sm text-body-sm text-outline">© 2024 TerraRecon AI. Scientific Earth Observation Systems.</p>
+<div class="flex gap-md">
+<a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-body-sm text-body-sm text-outline hover:text-primary transition-colors" href="#">API Docs</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Right Side: Imagery Showcase -->
+<section class="hidden md:block flex-grow relative overflow-hidden bg-surface-dim">
+<!-- Satellite Imagery Background -->
+<div class="absolute inset-0 w-full h-full" data-alt="A breathtaking, ultra-high-resolution satellite view of Earth from low orbit. Dense, swirling white cloud formations with intricate textures cover vast blue oceans and emerald green landmasses. The lighting is crisp and natural, highlighting atmospheric depth and the curvature of the planet. The overall aesthetic is professional, scientific, and awe-inspiring, following a clean, light-mode corporate palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAjyOpOqV5AP6Un5glO3blhG_dYeVhx7b_NKi1w9-PcBXO_cHrxwr_ocdJm7Xj7sugtXSPdYPLftnLl209uAroT5Vt5sas0vlL5L5FruTHeSNAfH9VFCjadVEuK_J4PRBMumCgi0kc7NDX4ku1D2-p05oQxcNVtA9BI2NxEhbzuRiCSbbkEjLl-7nlVbLZ2MILLeM2Oi_wnX-3Ueq-zSSwN1XI6VzLGcQlQNfayVybpZrZJjrboFWLG95g19OTAOfuIrewyfw7rW8Ry'); background-size: cover; background-position: center;">
+</div>
+<!-- Animated Layer (Atmospheric Data) -->
+<div class="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+</div>
+<!-- HUD Floating Elements -->
+<div class="absolute top-xl right-xl space-y-md">
+<div class="glass-hud p-md rounded shadow-sm w-64">
+<div class="flex items-center justify-between mb-base">
+<span class="font-label-md text-label-md text-primary">SENSOR STATUS</span>
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Satellite ID</span>
+<span class="font-mono-data text-mono-data">TR-A1-EPSILON</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Orbital Alt</span>
+<span class="font-mono-data text-mono-data">542.4 km</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cloud Cover</span>
+<span class="font-mono-data text-mono-data">24.8%</span>
+</div>
+</div>
+</div>
+<div class="glass-hud p-md rounded shadow-sm w-64">
+<span class="font-label-md text-label-md text-primary block mb-xs">ATMOSPHERIC RECONSTRUCTION</span>
+<div class="h-12 w-full bg-primary/10 rounded flex items-end gap-1 px-1 pb-1">
+<div class="flex-1 bg-primary/40 h-[20%]"></div>
+<div class="flex-1 bg-primary/40 h-[45%]"></div>
+<div class="flex-1 bg-primary/40 h-[30%]"></div>
+<div class="flex-1 bg-primary/40 h-[60%]"></div>
+<div class="flex-1 bg-primary/40 h-[85%]"></div>
+<div class="flex-1 bg-primary/40 h-[55%]"></div>
+<div class="flex-1 bg-primary/40 h-[40%]"></div>
+<div class="flex-1 bg-primary/40 h-[70%]"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Label -->
+<div class="absolute bottom-xl left-xl glass-hud px-md py-sm rounded">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<p class="font-label-md text-label-md text-primary">CURRENT TARGET</p>
+<p class="font-headline-md text-headline-md text-on-surface">Equatorial Cloud Systems</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Background Atmospheric Particles Micro-interaction -->
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            // Subtle parallax or glow movement could go here
+            // For a "Scientific Academic" look, we keep interactions very refined.
+        });
+    </script>
+</body></html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TerraRecon AI | Advanced Earth Observation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#0f55d2",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container": "#efeeea",
+                    "on-secondary-container": "#006e6e",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-surface-variant": "#434654",
+                    "surface-container-highest": "#e3e2df",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#cae6ff",
+                    "primary": "#0043ae",
+                    "on-tertiary-fixed": "#001e30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-high": "#e9e8e4",
+                    "tertiary-fixed-dim": "#90cdfd",
+                    "secondary": "#006a6a",
+                    "outline": "#737686",
+                    "on-surface": "#1b1c1a",
+                    "surface": "#faf9f5",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e3e2df",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#c4e3ff",
+                    "surface-dim": "#dbdad6",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#005076",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "inverse-surface": "#2f312e",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1a5ad7",
+                    "on-tertiary": "#ffffff",
+                    "background": "#faf9f5",
+                    "tertiary-container": "#236893",
+                    "on-tertiary-fixed-variant": "#004b70",
+                    "on-primary-container": "#d7dfff",
+                    "on-primary-fixed": "#001849",
+                    "on-primary-fixed-variant": "#003fa5",
+                    "secondary-fixed": "#93f2f2",
+                    "on-background": "#1b1c1a",
+                    "outline-variant": "#c3c6d6",
+                    "surface-bright": "#faf9f5",
+                    "secondary-container": "#90efef",
+                    "on-secondary-fixed-variant": "#004f4f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sidebar-width": "260px",
+                    "md": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #faf9f5; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .glass-hud { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid #E5E1D3; }
+        .tonal-card { background-color: #ffffff; border: 1px solid #E5E1D3; transition: all 0.2s ease-in-out; }
+        .tonal-card:hover { box-shadow: 0px 4px 12px rgba(26, 90, 215, 0.05); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-dot { width: 6px; height: 6px; background-color: #0043ae; border-radius: 50%; }
+        .split-slider-handle { cursor: col-resize; z-index: 10; }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 h-16 flex justify-between items-center px-lg z-50 bg-surface/80 backdrop-blur-md border-b border-surface-variant/20">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-primary">TerraRecon</span>
+</div>
+<div class="hidden md:flex items-center gap-xl">
+<a class="font-label-md text-label-md text-primary font-bold" href="#">Solutions</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Technology</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Enterprise</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="px-md py-xs font-label-md text-label-md text-on-surface-variant border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">Sign In</button>
+<button class="px-md py-xs font-label-md text-label-md bg-primary text-on-primary rounded-lg hover:opacity-90 transition-opacity">Start Analysis</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="A cinematic, high-resolution satellite view of Earth at twilight, showing the intricate textures of the planet's surface with subtle atmospheric clouds and glowing urban lights. The lighting is sophisticated, emphasizing depth and scientific precision with a cool, professional color palette of deep blues and ivory whites. This image serves as a clean, expansive backdrop for an enterprise geospatial AI landing page." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnOcqj-6EinG4rEpJciiWUazsOncFX8o_Ef2ZeBmfv0AxGPkbClsoH0Ro65H5CTllJb5GQENZJS6shbl7gmvOGhoRlBH6meHoDsdigH1ORcNWmgK_jIpyS0y0yG7uroDHRKkGw70p3nA7RK28lSJGozJeM42CIHx2NpK6ftGY_ffxpfC5X4CS3a7TuGnsU7yOcphht9HlVRcqFTySi0PdTwlw9MDW0gNGSjd25M3REeyLKxr6Rm8VmmaGWjM5tswFqhhSQavlu95uq')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/40 to-transparent"></div>
+</div>
+<div class="container-max mx-auto px-lg relative z-10 grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 mb-md">
+<span class="inline-block py-1 px-3 bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-wider rounded-full">v4.2 Enterprise Release</span>
+<span class="text-primary material-symbols-outlined text-[18px]">verified</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-md leading-tight">Advanced Cloud Detection &amp; Image Reconstruction</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-xl leading-relaxed">
+                    Enterprise-grade geospatial analytics powered by Generative AI. Transform occluded satellite imagery into clear, actionable scientific data for environmental monitoring and asset management.
+                </p>
+<div class="flex flex-col sm:flex-row gap-md">
+<button class="px-xl py-md bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:shadow-lg transition-all">
+                        Start Analysis <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="px-xl py-md bg-surface-container-lowest border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface transition-all">
+<span class="material-symbols-outlined">play_circle</span> View Demo
+                    </button>
+</div>
+</div>
+<div class="hidden md:flex justify-end items-center">
+<div class="glass-hud p-base rounded-xl shadow-xl w-full max-w-md overflow-hidden">
+<div class="relative h-64 w-full">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A side-by-side comparison of a satellite image. One side shows thick white cloud cover over a lush forest area, while the other side shows the reconstructed, cloud-free landscape with high scientific fidelity. A vertical white divider separates the two views, illustrating the 'Before' and 'After' state of AI-driven image reconstruction in a clean, clinical laboratory style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMR9djF-H_MUnf9CbNh32KmCv8nFjdlyTTgbWNj_ZL_TLP-nlDhnR07SxEcReYLGc1dp78am944MXIN8c_ds028OhUb6gcDQx9uPbPtUhz-CCbDL96Ql2_GNfkOcwxVLRIFWFHf96qBv6z3sWHhE6yRmXw4kVj4GbrrHrgEcRNz19KDfaYyalwi6nYyxg74GiIPmxg7U4TiTj3mtc8ZdngtImRYmmxsLWcqhv-0THbQZcmm734omzcL1LkCa2940cnn6GWjI9hHtuZ')"></div>
+<div class="absolute inset-y-0 left-1/2 w-1 bg-white shadow-md z-10"></div>
+<div class="absolute bottom-md left-md bg-black/50 backdrop-blur-md px-sm py-base rounded text-white text-[10px] font-mono-data">RAW_INPUT.TIF</div>
+<div class="absolute bottom-md right-md bg-primary/80 backdrop-blur-md px-sm py-base rounded text-white text-[10px] font-mono-data">PROCESSED_AOI.RECON</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-xl bg-surface-container-low">
+<div class="container-max mx-auto px-lg">
+<div class="text-center mb-xl max-w-3xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg mb-base">Precision Geospatial Capabilities</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Our suite of AI-driven tools enables researchers to bypass atmospheric interference and derive true value from multi-spectral imagery.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Feature 1 -->
+<div class="tonal-card p-lg rounded-xl flex flex-col gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">filter_drama</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Cloud Detection</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Identify and mask sub-pixel cloud cover with 99.8% precision across diverse terrain types.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="tonal-card p-lg rounded-xl flex flex-col gap-md bg-primary-container/5 border-primary/20">
+<div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[28px]">compare</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs text-primary">Image Reconstruction</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Generative Infilling technology replaces cloud-occluded pixels using historical data and temporal matching.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="tonal-card p-lg rounded-xl flex flex-col gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">query_stats</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Geospatial Analytics</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Derive high-level insights from raw spectral signatures for urban planning and resource allocation.</p>
+</div>
+</div>
+<!-- Feature 4 -->
+<div class="tonal-card p-lg rounded-xl flex flex-col gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">eco</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Environmental Monitoring</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Track deforestation, melting ice caps, and biodiversity shifts with automated alert systems.</p>
+</div>
+</div>
+<!-- Feature 5 -->
+<div class="tonal-card p-lg rounded-xl flex flex-col gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">agriculture</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Agriculture Insights</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Precise crop health monitoring and yield prediction using NDVI and moisture-level modeling.</p>
+</div>
+</div>
+<!-- Feature 6 -->
+<div class="tonal-card p-lg rounded-xl flex flex-col gap-md">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">emergency_home</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Disaster Assessment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rapid impact analysis for flooding, fire, and seismic events to support first responders.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-xl bg-surface">
+<div class="container-max mx-auto px-lg">
+<h2 class="font-headline-lg text-headline-lg mb-xl text-center">Scientific Data Pipeline</h2>
+<div class="relative flex flex-col md:flex-row justify-between items-start gap-md">
+<!-- Connective Line -->
+<div class="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-outline-variant -z-10"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center text-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center font-headline-md text-primary mb-md shadow-sm">01</div>
+<h4 class="font-label-md text-label-md mb-base uppercase tracking-wider text-primary">Upload</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-md">Ingest raw multispectral .TIF or satellite API streams.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center text-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">02</div>
+<h4 class="font-label-md text-label-md mb-base uppercase tracking-wider">Detect</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-md">Automated segmentation of atmospheric occlusions.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center text-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">03</div>
+<h4 class="font-label-md text-label-md mb-base uppercase tracking-wider">Reconstruct</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-md">Generative AI fills masked areas with high fidelity.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center text-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">04</div>
+<h4 class="font-label-md text-label-md mb-base uppercase tracking-wider">Analyze</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-md">Extract feature data and temporal trend metrics.</p>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center text-center flex-1">
+<div class="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">05</div>
+<h4 class="font-label-md text-label-md mb-base uppercase tracking-wider">Report</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant px-md">Export PDF, CSV, or direct GeoJSON integration.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Use Cases (Asymmetric Layout) -->
+<section class="py-xl bg-surface-container-low overflow-hidden">
+<div class="container-max mx-auto px-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="relative">
+<div class="aspect-square bg-white rounded-xl shadow-lg p-base border border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A vibrant multi-spectral heat map of an agricultural zone in the American Midwest. The map uses a palette of greens, teals, and blues to represent varying crop health indices. Data callouts and fine white technical lines annotate specific sectors, maintaining a clean, academic, and scientific data visualization aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2GHOeMKl3UVHdxesU2X0Z_lawKcuaGbmMvMXnnfHonXpBXPzVwe63cTuSuNcu5b-eSUNa44HxtwYbnCwaKTUKoe6z7CyzbFB-43SQxrA0xdTUF5DuTNmcguVXJezFv-LDWD9Syca9GzerPmenb7ad8iv5dRAZwrq-obYF28gxoH8qFvvyg_tUI7TCNrvJvIlObEV9O_JtOTduxQil5viYKqBRhqnbl729QFdJOD1ivmqDUgGVa-LIAb1xbmXw7eORV7kL7q8IfX5g"/>
+</div>
+<div class="absolute -bottom-md -right-md glass-hud p-md rounded-lg shadow-xl max-w-[240px]">
+<div class="flex items-center gap-2 mb-base">
+<span class="active-dot"></span>
+<span class="font-label-md text-label-md text-primary">Live Monitoring</span>
+</div>
+<p class="font-body-sm text-body-sm">NDVI Index detected 15% drop in Sector 4B moisture.</p>
+</div>
+</div>
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-md leading-tight">Empowering Industry-Specific Intelligence</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg leading-relaxed">
+                        TerraRecon AI isn't just about clear pictures; it's about the data underneath. We support critical decision-making across global industries.
+                    </p>
+<ul class="space-y-md">
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface block mb-base">Sustainable Agriculture</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Optimize fertilizer use and irrigation by mapping precise soil health metrics through cloud cover.</span>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface block mb-base">Logistics &amp; Infrastructure</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Monitor remote asset integrity and supply chain routes in regions with frequent weather interference.</span>
+</div>
+</li>
+<li class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<div>
+<span class="font-label-md text-label-md text-on-surface block mb-base">Climate Research</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Uninterrupted observation of polar ice and tropical forest density for accurate temporal modeling.</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Map CTA Section -->
+<section class="py-xl">
+<div class="container-max mx-auto px-lg">
+<div class="bg-primary-container rounded-xl p-xl relative overflow-hidden text-center">
+<!-- Background Map Texture -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" data-location="Zurich" style="background-image: url('https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg')"></div>
+<h2 class="font-headline-xl text-headline-xl text-on-primary-container mb-md">Ready to see through the noise?</h2>
+<p class="font-body-lg text-body-lg text-on-primary-container mb-xl opacity-90 max-w-2xl mx-auto">
+                    Join 500+ government agencies and enterprise partners using TerraRecon to gain a clear perspective of our changing planet.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-md relative z-10">
+<button class="px-xl py-md bg-white text-primary font-bold rounded-lg hover:bg-surface transition-colors shadow-md">Create Free Account</button>
+<button class="px-xl py-md border-2 border-white/30 text-white font-bold rounded-lg hover:bg-white/10 transition-colors">Contact Sales</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-surface-variant mt-xl">
+<div class="container-max mx-auto py-xl px-lg">
+<div class="flex flex-col md:flex-row justify-between items-start gap-xl mb-xl">
+<div class="max-w-xs">
+<span class="font-headline-md text-headline-md font-bold text-primary block mb-md">TerraRecon AI</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Pioneering the next generation of Earth Observation through physics-informed generative AI and multi-spectral analysis.
+                    </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-xl">
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-on-surface">Platform</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Cloud Detection</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Reconstruction</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Documentation</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-on-surface">Resources</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Case Studies</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Research Papers</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-label-md text-label-md text-on-surface">Company</span>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Security</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+</div>
+<div class="pt-lg border-t border-surface-variant flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 TerraRecon AI. Scientific Earth Observation Systems.</p>
+<div class="flex gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the HUD shadow
+        document.querySelectorAll('.tonal-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0px)';
+            });
+        });
+    </script>
+</body></html>

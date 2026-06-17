@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TerraRecon AI | Cloud Detection Analysis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#0f55d2",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container": "#efeeea",
+                    "on-secondary-container": "#006e6e",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-surface-variant": "#434654",
+                    "surface-container-highest": "#e3e2df",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#cae6ff",
+                    "primary": "#0043ae",
+                    "on-tertiary-fixed": "#001e30",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "surface-container-high": "#e9e8e4",
+                    "tertiary-fixed-dim": "#90cdfd",
+                    "secondary": "#006a6a",
+                    "outline": "#737686",
+                    "on-surface": "#1b1c1a",
+                    "surface": "#faf9f5",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e3e2df",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#c4e3ff",
+                    "surface-dim": "#dbdad6",
+                    "surface-container-low": "#f4f4f0",
+                    "tertiary": "#005076",
+                    "secondary-fixed-dim": "#76d6d5",
+                    "inverse-surface": "#2f312e",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#1a5ad7",
+                    "on-tertiary": "#ffffff",
+                    "background": "#faf9f5",
+                    "tertiary-container": "#236893",
+                    "on-tertiary-fixed-variant": "#004b70",
+                    "on-primary-container": "#d7dfff",
+                    "on-primary-fixed": "#001849",
+                    "on-primary-fixed-variant": "#003fa5",
+                    "secondary-fixed": "#93f2f2",
+                    "on-background": "#1b1c1a",
+                    "outline-variant": "#c3c6d6",
+                    "surface-bright": "#faf9f5",
+                    "secondary-container": "#90efef",
+                    "on-secondary-fixed-variant": "#004f4f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xl": "32px",
+                    "sidebar-width": "260px",
+                    "md": "16px",
+                    "xs": "8px",
+                    "base": "4px",
+                    "sm": "12px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "mono-data": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "mono-data": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E5E1D3;
+            border-radius: 10px;
+        }
+        .tonal-layer-1 {
+            background: #ffffff;
+            border: 1px solid #E5E1D3;
+        }
+        .glass-hud {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 67, 174, 0.1);
+        }
+        .compare-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #ffffff;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+        .compare-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 11;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 bottom-0 w-[260px] flex flex-col py-lg z-50 bg-surface-container border-r border-surface-variant">
+<div class="px-md mb-xl">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">satellite_alt</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TerraRecon AI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant/70 uppercase tracking-wider">Enterprise EO Platform</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">cloud_upload</span>
+<span class="font-label-md text-label-md">Upload</span>
+</a>
+<!-- Active State: Cloud Detection -->
+<a class="flex items-center gap-3 px-4 py-3 text-primary bg-primary-container/10 border-l-4 border-primary rounded-r-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">filter_drama</span>
+<span class="font-label-md text-label-md">Cloud Detection</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">compare</span>
+<span class="font-label-md text-label-md">Reconstruction</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-sm pt-lg border-t border-surface-variant/50">
+<button class="w-full mb-lg py-3 px-4 bg-primary text-white rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-shadow">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Process New Imagery
+            </button>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-error transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-[260px] h-16 flex justify-between items-center px-lg z-40 bg-surface/80 backdrop-blur-md border-b border-surface-variant/20">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full h-10 pl-10 pr-4 bg-surface-container-low border-none rounded-full font-body-md text-body-md focus:ring-1 focus:ring-primary" placeholder="Search imagery by ID or coordinates..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+<span class="material-symbols-outlined">support</span>
+<span class="font-label-md text-label-md">Support</span>
+</div>
+<div class="flex items-center gap-4 border-l border-surface-variant pl-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container p-1 rounded-full">notifications</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden ring-1 ring-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female data scientist wearing glasses, looking confidently at the camera in a modern, softly lit office environment. The style is clean and academic, with cool blue and ivory tones dominating the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWRRJzHLM47OD3JtehhL3W9zlOyj5cBGiff_hlLDlSz0C0UZOOMydbzvCiTNHvmETr0rQknDUzeKA3W8GuUnD0U0WPu1Dcn2FRVboLXERcHmgbR5qrhhZY9sXwVd9SrreXcQOaDMN46_B1V10iUwurZLgdVa77Lp-7xvFTBOME0Py6WPMdarjBij35QQTE3SbHv-7ATkJ-V8ur-iAYnHCxUvyOHD6F-dZb83JtzX56e7k-qTmcr1MLaimeX7tpp39PO8cpjf_4KsiS"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-16 p-lg flex-1 overflow-y-auto">
+<!-- Header Section -->
+<div class="mb-lg flex justify-between items-end">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md uppercase tracking-widest">Project 882-Alpha</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-md text-label-md uppercase tracking-widest text-primary">Detection Mask V4</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Cloud Detection Analysis</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Satellite: Sentinel-2B | Acquisition: 2024-05-12 14:22:01 UTC | Region: Amazon Basin, Brazil</p>
+</div>
+<div class="flex gap-2">
+<button class="px-md py-2 border border-outline-variant rounded hover:bg-surface-container transition-colors flex items-center gap-2 text-on-surface font-label-md">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export Mask
+                    </button>
+<button class="px-md py-2 bg-primary text-white rounded hover:shadow-lg transition-all flex items-center gap-2 font-label-md">
+<span class="material-symbols-outlined text-[18px]">share</span>
+                        Share Report
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Main Comparison Viewer -->
+<div class="col-span-12 lg:col-span-8 space-y-lg">
+<div class="tonal-layer-1 rounded-xl overflow-hidden relative group" style="height: 520px;">
+<div class="absolute inset-0 flex">
+<!-- Left Side: Original -->
+<div class="w-1/2 h-full relative border-r border-white/20">
+<img class="w-full h-full object-cover" data-alt="A high-resolution satellite view of a dense tropical rainforest in the Amazon Basin. Wispy white clouds and thick cumulus formations are scattered across the lush emerald green canopy. The image has a crisp, scientific clarity with realistic atmospheric haze and natural sunlight shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL4Lo1RuSiRjnJhkUuzRKmj2jpEaN5B8zH4KCoRtffcl__O03AajQiHmcS-mQZNQmQRFS1ce_Sws634lj82x-HKxkhFLiy34recWh68yBsXItm8lBykzGBvo8AXD2kZd-SwSu06EzguKDJB12HEZe9Nj4DwiLTBpyAAXF_THZJThICi-jiqrJ6w7j19aI_lUGa949iDZ-fbLd5VFBa99RK4K4_iHav1P_Eg9qsS-PX2icWu-CXgobDhzZsctxzJqCIg1pj7hbNhSYJ"/>
+<div class="absolute top-4 left-4 glass-hud px-3 py-1 rounded text-[11px] font-bold text-primary-container z-20">ORIGINAL RGB</div>
+</div>
+<!-- Right Side: Cloud Mask -->
+<div class="w-1/2 h-full relative">
+<img class="w-full h-full object-cover" data-alt="A scientific cloud mask visualization corresponding to a satellite image of the Amazon. The rainforest is rendered in deep indigo, while detected clouds are highlighted in vibrant, glowing cyan and electric blue heat-map styles. Thin atmosphere is represented by a soft teal glow, emphasizing high-precision pixel-level detection." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0HxWLanzhLrVIBi7tbaovJBr0FcEwAKE4T_w3gm4aOW1DTHRjkU3mBLTTZSVTHUzHr1gdvPW5VoQjIQIi9LmebVwr9thFl0jwnsjeH7dK_SWX0pSf6ljcm-6bMFuIP1mHilSW22XCWpdUidJfpUWDZAYPOk_QhpW8EguSb-ECZmUsyi-b7yU5rH0lQh8wGa-UOZMJ1obPfp5ujDjEz4U5tLRUvFEShhzwosBkKw8u6D34_OWMn-AEtbGAy6QiU9u09Jmu5cGU01Yb"/>
+<div class="absolute top-4 right-4 glass-hud px-3 py-1 rounded text-[11px] font-bold text-secondary-container z-20">ALBEDO MASK</div>
+</div>
+</div>
+<!-- HUD Controls -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 glass-hud px-4 py-2 rounded-full flex items-center gap-6 z-30">
+<div class="flex items-center gap-4 border-r border-outline-variant/30 pr-4">
+<button class="material-symbols-outlined text-primary hover:bg-primary/10 p-1 rounded">zoom_in</button>
+<button class="material-symbols-outlined text-primary hover:bg-primary/10 p-1 rounded">zoom_out</button>
+<button class="material-symbols-outlined text-primary hover:bg-primary/10 p-1 rounded">layers</button>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-on-surface-variant">Mask Opacity</span>
+<input class="w-24 h-1 bg-primary-container rounded-full appearance-none accent-primary" type="range"/>
+<span class="font-mono-data text-mono-data text-primary">85%</span>
+</div>
+</div>
+<!-- Comparison Handle (Visual only) -->
+<div class="compare-divider"></div>
+<div class="compare-handle">
+<span class="material-symbols-outlined text-primary text-[18px]">unfold_more_double</span>
+</div>
+</div>
+<!-- Timeline of Detection Events -->
+<div class="tonal-layer-1 p-lg rounded-xl">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Inference Pipeline Events</h3>
+<div class="relative space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant/30">
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-4 h-4 bg-primary-container rounded-full border-4 border-white"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md font-bold">Inference Engine Complete</p>
+<p class="text-body-sm text-on-surface-variant">Convolutional Neural Network (CNN) pass finalized with 128 feature layers.</p>
+</div>
+<span class="font-mono-data text-mono-data text-outline-variant">14:23:45 UTC</span>
+</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-1 w-4 h-4 bg-secondary-container rounded-full border-4 border-white"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md font-bold">Cirrus Filtering Active</p>
+<p class="text-body-sm text-on-surface-variant">Detected high-altitude ice crystals; applying secondary thermal spectral correction.</p>
+</div>
+<span class="font-mono-data text-mono-data text-outline-variant">14:23:12 UTC</span>
+</div>
+</div>
+<div class="relative pl-8 opacity-60">
+<div class="absolute left-0 top-1 w-4 h-4 bg-outline-variant rounded-full border-4 border-white"></div>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md font-bold">Image Orthorectification</p>
+<p class="text-body-sm text-on-surface-variant">Geometry correction applied based on DEM (Digital Elevation Model).</p>
+</div>
+<span class="font-mono-data text-mono-data text-outline-variant">14:22:58 UTC</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Data Stats -->
+<div class="col-span-12 lg:col-span-4 space-y-lg">
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 gap-md">
+<div class="tonal-layer-1 p-md rounded-xl">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Cloud Coverage</p>
+<h4 class="font-headline-lg text-headline-lg text-primary">32.4%</h4>
+<div class="mt-3 w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 32.4%"></div>
+</div>
+</div>
+<div class="tonal-layer-1 p-md rounded-xl">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Visible Area</p>
+<h4 class="font-headline-lg text-headline-lg text-secondary">67.6%</h4>
+<div class="mt-3 w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 67.6%"></div>
+</div>
+</div>
+<div class="tonal-layer-1 p-md rounded-xl">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Cloud Pixels</p>
+<h4 class="font-headline-lg text-headline-lg text-on-surface">4.2M</h4>
+<p class="font-mono-data text-[10px] text-outline-variant mt-2">Σ (p &gt; 0.85 threshold)</p>
+</div>
+<div class="tonal-layer-1 p-md rounded-xl">
+<p class="font-label-md text-label-md text-on-surface-variant mb-1">Confidence</p>
+<h4 class="font-headline-lg text-headline-lg text-tertiary">99.8%</h4>
+<p class="font-mono-data text-[10px] text-outline-variant mt-2">σ = 0.002 accuracy</p>
+</div>
+</div>
+<!-- Atmospheric Profile -->
+<div class="tonal-layer-1 p-lg rounded-xl">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Spectral Profile</h3>
+<span class="material-symbols-outlined text-primary text-[20px]">insights</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm">Short-wave Infrared</span>
+<span class="font-mono-data text-mono-data">High Reflection</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-tertiary h-full" style="width: 78%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm">Near-Infrared (NIR)</span>
+<span class="font-mono-data text-mono-data">Medium Scat.</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-primary-container h-full" style="width: 45%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1">
+<span class="font-body-sm text-body-sm">Vapor Absorption</span>
+<span class="font-mono-data text-mono-data">Intense</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="bg-error h-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-surface-variant">
+<p class="font-body-sm text-body-sm text-on-surface-variant italic leading-relaxed">
+                                "Algorithm detected significant high-altitude cirrus formations in the northwestern quadrant. Masking adjusted for glint suppression over water bodies."
+                            </p>
+</div>
+</div>
+<!-- Map Context -->
+<div class="tonal-layer-1 p-base rounded-xl overflow-hidden relative">
+<div class="h-48 bg-surface-container" data-location="Amazon Basin" style="">
+<img class="w-full h-full object-cover grayscale contrast-75 opacity-80" data-alt="A stylized minimalist geographic map of the Amazon Basin region in Brazil, focusing on the intersection of rivers and dense forests. The map uses a clean ivory and light grey color palette with subtle blue lines for waterways and a focused red dot indicating the current analysis area. Scientific markers and coordinate grids are faintly visible." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvgKDyKEJqGk22qhw98__AyGbKg4Bi2uLqkaW4W_Ta7-t-nsmcAQwbfmqPygNPzx3Rznbrc59MZpFvXDo4L9K3dzpG92TEwA8Pf--HlOgr2_SyrO3k4vNeHu-Ky0nLHbD-rD3PY2mOTcmLUqvM1U-x6UeL-fIc4RqfpRp1w1JZUDy5EAbf372QFiOV1Mc0VLAdunSKMHsL85JU0zHzRQoWVDg84VfYLI8-a-cGuB9KWQ2BvxD9coXw33z_S1EfY1D8UTCXgLYvJ9jX"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<div class="absolute bottom-3 left-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-white text-[18px]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="text-white font-label-md text-label-md">03°06'S 60°01'W</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-xl px-lg flex flex-col md:flex-row justify-between items-center gap-4 border-t border-surface-variant">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">TerraRecon AI</span>
+<span class="text-on-surface-variant text-body-sm">© 2024. Scientific Earth Observation Systems.</span>
+</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="#">API Documentation</a>
+</div>
+</footer>
+</main>
+<!-- Floating Action Feedback (Hidden on detailed view as per mandate, but present for interaction) -->
+<div class="fixed bottom-8 right-8 glass-hud px-6 py-4 rounded-xl shadow-xl flex items-center gap-4 translate-y-24 transition-transform duration-500 z-50" id="toast">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-label-md text-label-md">Mask Processed Successfully</p>
+<p class="text-body-sm text-on-surface-variant">Data ready for reconstruction pipeline.</p>
+</div>
+</div>
+<script>
+        // Micro-interaction for the handle dragging (visual representation)
+        const divider = document.querySelector('.compare-divider');
+        const handle = document.querySelector('.compare-handle');
+        const container = divider?.parentElement;
+
+        if (container) {
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const percent = (x / rect.width) * 100;
+                
+                if (percent > 0 && percent < 100) {
+                    divider.style.left = `${percent}%`;
+                    handle.style.left = `${percent}%`;
+                    
+                    // Update relative widths of the images
+                    container.children[0].children[0].style.width = `${percent}%`;
+                    container.children[0].children[1].style.width = `${100 - percent}%`;
+                }
+            });
+        }
+
+        // Show a brief success toast after 1 second
+        window.onload = () => {
+            setTimeout(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('translate-y-24');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-24');
+                }, 4000);
+            }, 1000);
+        }
+    </script>
+</body></html>

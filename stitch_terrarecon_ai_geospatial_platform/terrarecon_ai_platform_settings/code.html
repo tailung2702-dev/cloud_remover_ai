@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings | TerraRecon AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e5e1d3;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #c3c6d6;
+        }
+        body {
+            background-color: #FDFCF8;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f4f4f0",
+                        "surface-container-high": "#e9e8e4",
+                        "primary": "#0043ae",
+                        "tertiary-container": "#236893",
+                        "on-surface": "#1b1c1a",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e3e2df",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#006e6e",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dbdad6",
+                        "surface": "#faf9f5",
+                        "on-background": "#1b1c1a",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "primary-container": "#1a5ad7",
+                        "on-primary-container": "#d7dfff",
+                        "background": "#faf9f5",
+                        "outline-variant": "#c3c6d6",
+                        "secondary-container": "#90efef",
+                        "tertiary-fixed-dim": "#90cdfd",
+                        "tertiary": "#005076",
+                        "on-primary-fixed": "#001849",
+                        "surface-tint": "#0f55d2",
+                        "on-secondary-fixed": "#002020",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#434654",
+                        "on-tertiary-fixed-variant": "#004b70",
+                        "secondary-fixed": "#93f2f2",
+                        "on-secondary-fixed-variant": "#004f4f",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f2f1ed",
+                        "outline": "#737686",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "inverse-surface": "#2f312e",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#006a6a",
+                        "surface-variant": "#e3e2df",
+                        "on-tertiary-container": "#c4e3ff",
+                        "surface-bright": "#faf9f5",
+                        "surface-container": "#efeeea",
+                        "secondary-fixed-dim": "#76d6d5",
+                        "on-tertiary-fixed": "#001e30",
+                        "on-primary-fixed-variant": "#003fa5",
+                        "tertiary-fixed": "#cae6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "sidebar-width": "260px",
+                        "md": "16px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "sm": "12px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono-data": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "mono-data": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-body-md text-on-surface custom-scrollbar">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar-width bg-surface-container-low dark:bg-surface-dim border-r border-outline-variant dark:border-outline flex flex-col py-xl transition-all duration-200 ease-in-out z-50">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">TerraRecon AI</h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-70">Geospatial Intelligence</p>
+</div>
+<nav class="flex-grow space-y-base overflow-y-auto custom-scrollbar">
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+<span class="font-body-md text-body-md">Upload</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+<span class="font-body-md text-body-md">Cloud Detection</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span class="font-body-md text-body-md">Reconstruction</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-lg py-sm border-l-4 border-primary bg-secondary-container/30 text-primary dark:text-primary-fixed font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-lg pt-xl border-t border-outline-variant">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a geospatial analyst in a modern office, soft high-key lighting, ivory and blue color palette, professional academic aesthetic, clean sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo42tGxZo5y2CsbwyXPhwIbRA7cr9Ecy-iYGb42e7yfDVWnZte4NxDY2zUrXlTMLXAiL5cCXsJ1wHRXNGbRsVGRGMtS6ui2kbPbK_vjN51Q3j-54bZS6qR-7lmhEDNyRaopBgyVqPqqObloE5DYYSfh-3zLv4n5kKzxKBw3OGJB0sW05Eh2Va3iJ1HfMstxHxFatS4wmON2Kpk9QMfv6-IfPZzFFTfSQmIpSOMLD-DlJQVifBYjs4Mn8SBzuTlfLo6733mI9XugF73"/>
+<div>
+<p class="font-label-md text-label-md font-bold">Dr. Elena Vance</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Lead Researcher</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-sidebar-width h-16 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flex items-center justify-between px-xl z-40">
+<div class="flex items-center flex-grow max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-xl py-xs text-body-sm focus:ring-1 focus:ring-primary" placeholder="Search parameters, logs, or users..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-container-low rounded-full transition-transform scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-xs hover:bg-surface-container-low rounded-full transition-transform scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+<div class="h-6 w-[1px] bg-outline-variant mx-xs"></div>
+<button class="flex items-center gap-xs p-xs hover:bg-surface-container-low rounded-full transition-transform scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-sidebar-width pt-16 min-h-screen bg-background">
+<div class="p-xl max-w-container-max mx-auto">
+<!-- Page Header -->
+<header class="mb-xl">
+<h1 class="font-headline-xl text-headline-xl text-primary mb-xs">Settings</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage account, preferences, and platform settings.</p>
+</header>
+<!-- Settings Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Profile & Security Column -->
+<div class="lg:col-span-8 space-y-xl">
+<!-- 1. Profile Settings -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden transition-all duration-200">
+<div class="px-xl py-lg border-b border-outline-variant bg-surface">
+<h2 class="font-headline-md text-headline-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="person">person</span>
+                                Profile Settings
+                            </h2>
+</div>
+<div class="p-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Full Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="text" value="Elena Vance"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Email</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="email" value="e.vance@terrarecon.ai"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Organization</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="text" value="Geospatial Institute of Excellence"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Role</label>
+<select class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary">
+<option>Lead Researcher</option>
+<option>Senior Analyst</option>
+<option>Data Engineer</option>
+<option>Administrator</option>
+</select>
+</div>
+</div>
+<div class="px-xl py-md bg-surface flex justify-end gap-md">
+<button class="px-lg py-xs border border-outline-variant rounded text-body-md font-medium hover:bg-surface-container-high transition-colors">Cancel</button>
+<button class="px-lg py-xs bg-primary text-on-primary rounded text-body-md font-medium hover:opacity-90 transition-all shadow-sm">Save Changes</button>
+</div>
+</section>
+<!-- 3. Analysis Preferences -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant bg-surface">
+<h2 class="font-headline-md text-headline-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="science">science</span>
+                                Analysis Preferences
+                            </h2>
+</div>
+<div class="p-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Default Output Format</label>
+<div class="flex flex-wrap gap-xs">
+<button class="px-sm py-base border-2 border-primary bg-primary-fixed/20 text-primary rounded text-label-md font-bold">GeoJSON</button>
+<button class="px-sm py-base border border-outline-variant text-on-surface-variant rounded text-label-md hover:bg-surface-container-low transition-colors">KML</button>
+<button class="px-sm py-base border border-outline-variant text-on-surface-variant rounded text-label-md hover:bg-surface-container-low transition-colors">SHP</button>
+<button class="px-sm py-base border border-outline-variant text-on-surface-variant rounded text-label-md hover:bg-surface-container-low transition-colors">GeoTIFF</button>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Processing Priority</label>
+<select class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary">
+<option>Balanced (Standard)</option>
+<option>High (Expedited Compute)</option>
+<option>Low (Cost Optimized)</option>
+</select>
+</div>
+</div>
+<div class="space-y-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Image Quality (DPI)</label>
+<input class="w-full accent-primary" max="600" min="150" step="50" type="range" value="300"/>
+<div class="flex justify-between text-[10px] text-on-surface-variant uppercase font-bold">
+<span>150 (Fast)</span>
+<span>300 (HD)</span>
+<span>600 (Ultra)</span>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Report Format</label>
+<div class="grid grid-cols-2 gap-sm">
+<div class="flex items-center gap-sm p-sm border border-outline rounded bg-surface cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-primary" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="text-body-sm font-medium">Standard PDF</span>
+</div>
+<div class="flex items-center gap-sm p-sm border border-outline-variant rounded bg-surface-container-low cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="html">html</span>
+<span class="text-body-sm font-medium">Interactive HTML</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Security -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant bg-surface">
+<h2 class="font-headline-md text-headline-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="shield">shield</span>
+                                Security
+                            </h2>
+</div>
+<div class="p-xl space-y-lg">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Current Password</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md" type="password"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">New Password</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md" type="password"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Confirm Password</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md" type="password"/>
+</div>
+</div>
+<div class="flex justify-start">
+<button class="px-lg py-xs bg-primary text-on-primary rounded text-body-md font-medium hover:opacity-90 transition-all">Update Password</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Notifications & Account Column -->
+<div class="lg:col-span-4 space-y-xl">
+<!-- 2. Notification Preferences -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant bg-surface">
+<h2 class="font-headline-md text-headline-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+                                Notifications
+                            </h2>
+</div>
+<div class="p-xl space-y-lg">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-body-md font-semibold">Email Notifications</p>
+<p class="text-body-sm text-on-surface-variant">Summary of all activity</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-body-md font-semibold">Processing Alerts</p>
+<p class="text-body-sm text-on-surface-variant">When analysis completes</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-body-md font-semibold">Weekly Reports</p>
+<p class="text-body-sm text-on-surface-variant">Automated insights digest</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between">
+<div>
+<p class="text-body-md font-semibold">Platform Updates</p>
+<p class="text-body-sm text-on-surface-variant">New features and improvements</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- 5. Account Management -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<div class="px-xl py-lg border-b border-outline-variant bg-surface">
+<h2 class="font-headline-md text-headline-md flex items-center gap-sm text-error">
+<span class="material-symbols-outlined" data-icon="manage_accounts">manage_accounts</span>
+                                Danger Zone
+                            </h2>
+</div>
+<div class="p-xl space-y-md">
+<button class="w-full flex items-center justify-between px-lg py-sm border border-outline-variant rounded hover:bg-surface-container-low transition-colors group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors" data-icon="file_download">file_download</span>
+<span class="text-body-md font-medium">Export All Personal Data</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-lg py-sm border border-error/20 bg-error/5 rounded hover:bg-error/10 transition-colors group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-error" data-icon="logout">logout</span>
+<span class="text-body-md font-medium text-error">Sign Out of All Devices</span>
+</div>
+<span class="material-symbols-outlined text-error text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="pt-md">
+<p class="text-[11px] text-on-surface-variant opacity-60 leading-relaxed">
+                                    Managing your TerraRecon account ensures data sovereignty. Data exports take up to 24 hours to generate.
+                                </p>
+</div>
+</div>
+</section>
+<!-- Scientific Visual Cue (Atmospheric Depth) -->
+<div class="relative h-48 rounded-lg overflow-hidden border border-outline-variant">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A stylized scientific visualization of atmospheric layers and satellite scan lines, subtle blue and ivory gradients, high precision cartographic aesthetic, clean academic scientific mood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5hWnuSAzhbb9clnfVOjwSHFJLb0tyltl5al1hVpRdtnxieL-ENuN4sALX1-29_YQc5-qHSeF4OssNfcH_Fe7C0l1vFK578smKvHl8q5L1DJj78lZTlbZxrmbqfI74KiGf6lDGg4JJGqUzWLuTWKyFXDq4-dtwzZOM-zwG1PfAvkr971qZE7SpiGY5Ff9XST1BhVICegisaGHtvcFsMtFQtmUYPJbgWwWGBjIDm_bk6yEMIe6HRb2VP9SkIDQIqAOl8POUOpNyOQ7_')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<div class="absolute bottom-sm left-sm right-sm bg-white/80 backdrop-blur-md p-sm rounded border border-outline-variant">
+<p class="font-mono-data text-mono-data text-primary uppercase font-bold">Cloud Cluster Alpha-9</p>
+<p class="text-[10px] text-on-surface-variant">Connected: Satellite Sentinel-2B</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Stats -->
+<footer class="mt-xl pt-lg border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex items-center gap-xl">
+<div>
+<p class="text-label-md font-bold text-on-surface-variant uppercase">Current Plan</p>
+<p class="text-body-md font-semibold text-primary">Enterprise Pro Suite</p>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div>
+<p class="text-label-md font-bold text-on-surface-variant uppercase">Storage Used</p>
+<p class="text-body-md font-semibold text-on-surface">1.2 TB / 5 TB</p>
+</div>
+</div>
+<p class="text-body-sm text-on-surface-variant">© 2024 TerraRecon AI • Scientific Protocol v4.2.1</p>
+</footer>
+</div>
+</main>
+<script>
+        // Simple micro-interaction for toggle switches
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const label = this.closest('label').parentElement.querySelector('p');
+                if(this.checked) {
+                    console.log(`Enabled: ${label.innerText}`);
+                } else {
+                    console.log(`Disabled: ${label.innerText}`);
+                }
+            });
+        });
+
+        // Search input animation
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>
