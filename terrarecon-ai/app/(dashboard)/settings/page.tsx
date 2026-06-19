@@ -14,8 +14,8 @@ export default function SettingsPage() {
         {/* Profile & Security Column */}
         <div className="lg:col-span-8 space-y-xl">
           {/* 1. Profile Settings */}
-          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden transition-all duration-200">
-            <div className="px-xl py-lg border-b border-outline-variant bg-surface">
+          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden transition-all duration-200 dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
+            <div className="px-xl py-lg border-b border-outline-variant bg-surface dark:bg-[#060b17]/80 dark:border-[#1e293b]">
               <h2 className="font-headline-md text-headline-md flex items-center gap-sm">
                 <Icon name="person" className="text-primary" />
                 Profile Settings
@@ -24,19 +24,19 @@ export default function SettingsPage() {
             <div className="p-md sm:p-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
               <div className="space-y-xs">
                 <label className="font-label-md text-label-md text-on-surface-variant">Full Name</label>
-                <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="text" defaultValue="Elena Vance" />
+                <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10" type="text" defaultValue="Elena Vance" />
               </div>
               <div className="space-y-xs">
                 <label className="font-label-md text-label-md text-on-surface-variant">Email</label>
-                <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="email" defaultValue="e.vance@terrarecon.ai" />
+                <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10" type="email" defaultValue="e.vance@terrarecon.ai" />
               </div>
               <div className="space-y-xs">
                 <label className="font-label-md text-label-md text-on-surface-variant">Organization</label>
-                <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="text" defaultValue="Geospatial Institute of Excellence" />
+                <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10" type="text" defaultValue="Geospatial Institute of Excellence" />
               </div>
               <div className="space-y-xs">
                 <label className="font-label-md text-label-md text-on-surface-variant">Role</label>
-                <select className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary">
+                <select className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10">
                   <option>Lead Researcher</option>
                   <option>Senior Analyst</option>
                   <option>Data Engineer</option>
@@ -44,15 +44,15 @@ export default function SettingsPage() {
                 </select>
               </div>
             </div>
-            <div className="px-md py-sm sm:px-xl sm:py-md bg-surface flex justify-end gap-md">
+            <div className="px-md py-sm sm:px-xl sm:py-md bg-surface flex justify-end gap-md dark:bg-[#060b17]/80">
               <button className="px-lg py-xs border border-outline-variant rounded text-body-md font-medium hover:bg-surface-container-high transition-colors">Cancel</button>
               <button className="px-lg py-xs bg-primary text-white rounded text-body-md font-medium hover:opacity-90 transition-all shadow-sm">Save Changes</button>
             </div>
           </section>
 
           {/* 3. Analysis Preferences */}
-          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden">
-            <div className="px-xl py-lg border-b border-outline-variant bg-surface">
+          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
+            <div className="px-xl py-lg border-b border-outline-variant bg-surface dark:bg-[#060b17]/80 dark:border-[#1e293b]">
               <h2 className="font-headline-md text-headline-md flex items-center gap-sm">
                 <Icon name="science" className="text-primary" />
                 Analysis Preferences
@@ -72,7 +72,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="space-y-xs">
                     <label className="font-label-md text-label-md text-on-surface-variant">Processing Priority</label>
-                    <select className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary">
+                    <select className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10">
                       <option>Balanced (Standard)</option>
                       <option>High (Expedited Compute)</option>
                       <option>Low (Cost Optimized)</option>
@@ -108,8 +108,8 @@ export default function SettingsPage() {
           </section>
 
           {/* 4. Security */}
-          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden">
-            <div className="px-xl py-lg border-b border-outline-variant bg-surface">
+          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
+            <div className="px-xl py-lg border-b border-outline-variant bg-surface dark:bg-[#060b17]/80 dark:border-[#1e293b]">
               <h2 className="font-headline-md text-headline-md flex items-center gap-sm">
                 <Icon name="shield" className="text-primary" />
                 Security
@@ -119,15 +119,15 @@ export default function SettingsPage() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
                 <div className="space-y-xs">
                   <label className="font-label-md text-label-md text-on-surface-variant">Current Password</label>
-                  <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md" type="password" />
+                  <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md dark:bg-[#060b17] dark:border-white/10" type="password" />
                 </div>
                 <div className="space-y-xs">
                   <label className="font-label-md text-label-md text-on-surface-variant">New Password</label>
-                  <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md" type="password" />
+                  <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md dark:bg-[#060b17] dark:border-white/10" type="password" />
                 </div>
                 <div className="space-y-xs">
                   <label className="font-label-md text-label-md text-on-surface-variant">Confirm Password</label>
-                  <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md" type="password" />
+                  <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md dark:bg-[#060b17] dark:border-white/10" type="password" />
                 </div>
               </div>
               <div className="flex justify-start">
@@ -140,8 +140,8 @@ export default function SettingsPage() {
         {/* Notifications & Account Column */}
         <div className="lg:col-span-4 space-y-xl">
           {/* 2. Notification Preferences */}
-          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden">
-            <div className="px-xl py-lg border-b border-outline-variant bg-surface">
+          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
+            <div className="px-xl py-lg border-b border-outline-variant bg-surface dark:bg-[#060b17]/80 dark:border-[#1e293b]">
               <h2 className="font-headline-md text-headline-md flex items-center gap-sm">
                 <Icon name="notifications_active" className="text-primary" />
                 Notifications
@@ -192,8 +192,8 @@ export default function SettingsPage() {
           </section>
 
           {/* 5. Account Management */}
-          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden">
-            <div className="px-xl py-lg border-b border-outline-variant bg-surface">
+          <section className="bg-white border border-[#E5E1D3] rounded-lg overflow-hidden dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
+            <div className="px-xl py-lg border-b border-outline-variant bg-surface dark:bg-[#060b17]/80 dark:border-[#1e293b]">
               <h2 className="font-headline-md text-headline-md flex items-center gap-sm text-error">
                 <Icon name="manage_accounts" className="text-error" />
                 Danger Zone
@@ -223,14 +223,14 @@ export default function SettingsPage() {
           </section>
 
           {/* Scientific Visual Cue (Atmospheric Depth) */}
-          <div className="relative h-48 rounded-lg overflow-hidden border border-[#E5E1D3]">
+          <div className="relative h-48 rounded-lg overflow-hidden border border-[#E5E1D3] dark:border-white/10">
             <div 
               className="absolute inset-0 bg-cover bg-center" 
               title="A stylized scientific visualization of atmospheric layers and satellite scan lines, subtle blue and ivory gradients, high precision cartographic aesthetic, clean academic scientific mood." 
               style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5hWnuSAzhbb9clnfVOjwSHFJLb0tyltl5al1hVpRdtnxieL-ENuN4sALX1-29_YQc5-qHSeF4OssNfcH_Fe7C0l1vFK578smKvHl8q5L1DJj78lZTlbZxrmbqfI74KiGf6lDGg4JJGqUzWLuTWKyFXDq4-dtwzZOM-zwG1PfAvkr971qZE7SpiGY5Ff9XST1BhVICegisaGHtvcFsMtFQtmUYPJbgWwWGBjIDm_bk6yEMIe6HRb2VP9SkIDQIqAOl8POUOpNyOQ7_')" }}
             ></div>
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
-            <div className="absolute bottom-sm left-sm right-sm bg-white/80 backdrop-blur-md p-sm rounded border border-outline-variant">
+            <div className="absolute bottom-sm left-sm right-sm bg-white/80 backdrop-blur-md p-sm rounded border border-outline-variant dark:bg-[#060b17]/80 dark:border-white/10">
               <p className="font-mono-data text-mono-data text-primary uppercase font-bold">Cloud Cluster Alpha-9</p>
               <p className="text-[10px] text-on-surface-variant">Connected: Satellite Sentinel-2B</p>
             </div>

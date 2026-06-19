@@ -86,7 +86,7 @@ export default function CloudDetectionPage() {
         {/* Main Comparison Viewer */}
         <div className="col-span-12 lg:col-span-8 space-y-lg">
           <div 
-            className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden relative group select-none h-[380px] sm:h-[520px]" 
+            className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden relative group select-none h-[380px] sm:h-[520px] dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md" 
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
@@ -141,7 +141,7 @@ export default function CloudDetectionPage() {
           </div>
 
           {/* Timeline of Detection Events */}
-          <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl">
+          <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Inference Pipeline Events</h3>
             <div className="relative space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant/30">
               <div className="relative pl-8">
@@ -184,7 +184,7 @@ export default function CloudDetectionPage() {
         <div className="col-span-12 lg:col-span-4 space-y-lg">
           {/* Stats Grid */}
           <div className="grid grid-cols-2 gap-md">
-            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl">
+            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
               <p className="font-label-md text-label-md text-on-surface-variant mb-1">Cloud Coverage</p>
               <h4 className="font-headline-lg text-headline-lg text-primary">32.4%</h4>
               <div className="mt-3 w-full bg-surface-container h-1 rounded-full overflow-hidden">
@@ -192,7 +192,7 @@ export default function CloudDetectionPage() {
               </div>
             </div>
             
-            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl">
+            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
               <p className="font-label-md text-label-md text-on-surface-variant mb-1">Visible Area</p>
               <h4 className="font-headline-lg text-headline-lg text-secondary">67.6%</h4>
               <div className="mt-3 w-full bg-surface-container h-1 rounded-full overflow-hidden">
@@ -200,13 +200,13 @@ export default function CloudDetectionPage() {
               </div>
             </div>
             
-            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl">
+            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
               <p className="font-label-md text-label-md text-on-surface-variant mb-1">Cloud Pixels</p>
               <h4 className="font-headline-lg text-headline-lg text-on-surface">4.2M</h4>
               <p className="font-mono-data text-[10px] text-outline-variant mt-2">Σ (p {'>'} 0.85 threshold)</p>
             </div>
             
-            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl">
+            <div className="bg-white border border-[#E5E1D3] p-md rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
               <p className="font-label-md text-label-md text-on-surface-variant mb-1">Confidence</p>
               <h4 className="font-headline-lg text-headline-lg text-tertiary">99.8%</h4>
               <p className="font-mono-data text-[10px] text-outline-variant mt-2">σ = 0.002 accuracy</p>
@@ -214,7 +214,7 @@ export default function CloudDetectionPage() {
           </div>
 
           {/* Atmospheric Profile */}
-          <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl">
+          <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex justify-between items-center mb-md">
               <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Spectral Profile</h3>
               <Icon name="insights" className="text-primary text-[20px]" />
@@ -260,7 +260,7 @@ export default function CloudDetectionPage() {
           </div>
 
           {/* Map Context */}
-          <div className="bg-white border border-[#E5E1D3] p-base rounded-xl overflow-hidden relative">
+          <div className="bg-white border border-[#E5E1D3] p-base rounded-xl overflow-hidden relative dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="h-48 bg-surface-container relative">
               <img 
                 className="w-full h-full object-cover grayscale contrast-75 opacity-80" 
@@ -279,7 +279,7 @@ export default function CloudDetectionPage() {
 
       {/* Floating Action Feedback (Toast) */}
       <div 
-        className={`fixed bottom-8 right-8 glass-hud px-6 py-4 rounded-xl shadow-xl flex items-center gap-4 transition-transform duration-500 z-50 ${showToast ? 'translate-y-0' : 'translate-y-24 opacity-0 pointer-events-none'}`}
+        className={`fixed bottom-8 right-8 glass-hud px-6 py-4 rounded-xl shadow-xl flex items-center gap-4 transition-transform duration-500 z-50 dark:bg-[#0a1122]/80 dark:border dark:border-white/10 dark:backdrop-blur-md ${showToast ? 'translate-y-0' : 'translate-y-24 opacity-0 pointer-events-none'}`}
       >
         <Icon name="check_circle" filled className="text-secondary" />
         <div>

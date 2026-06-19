@@ -28,14 +28,29 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="relative min-h-screen md:h-screen flex items-center overflow-hidden py-20 md:py-0">
         <div className="absolute inset-0 z-0">
-          <div
-            className="w-full h-full bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnOcqj-6EinG4rEpJciiWUazsOncFX8o_Ef2ZeBmfv0AxGPkbClsoH0Ro65H5CTllJb5GQENZJS6shbl7gmvOGhoRlBH6meHoDsdigH1ORcNWmgK_jIpyS0y0yG7uroDHRKkGw70p3nA7RK28lSJGozJeM42CIHx2NpK6ftGY_ffxpfC5X4CS3a7TuGnsU7yOcphht9HlVRcqFTySi0PdTwlw9MDW0gNGSjd25M3REeyLKxr6Rm8VmmaGWjM5tswFqhhSQavlu95uq')",
-            }}
-          ></div>
-          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-surface/95 via-surface/90 to-surface/40 md:from-surface/90 md:via-surface/40 md:to-transparent"></div>
+          <div className="absolute inset-0 dark:hidden">
+            <div
+              className="w-full h-full bg-cover bg-center"
+              style={{
+                backgroundImage:
+                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnOcqj-6EinG4rEpJciiWUazsOncFX8o_Ef2ZeBmfv0AxGPkbClsoH0Ro65H5CTllJb5GQENZJS6shbl7gmvOGhoRlBH6meHoDsdigH1ORcNWmgK_jIpyS0y0yG7uroDHRKkGw70p3nA7RK28lSJGozJeM42CIHx2NpK6ftGY_ffxpfC5X4CS3a7TuGnsU7yOcphht9HlVRcqFTySi0PdTwlw9MDW0gNGSjd25M3REeyLKxr6Rm8VmmaGWjM5tswFqhhSQavlu95uq')",
+              }}
+            ></div>
+            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-surface/95 via-surface/90 to-surface/40 md:from-surface/90 md:via-surface/40 md:to-transparent"></div>
+          </div>
+          {/* Dark Mode Mission Control Background */}
+          <div className="absolute inset-0 hidden dark:block bg-[#020611]">
+            <div
+              className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-screen"
+              style={{
+                backgroundImage:
+                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5hWnuSAzhbb9clnfVOjwSHFJLb0tyltl5al1hVpRdtnxieL-ENuN4sALX1-29_YQc5-qHSeF4OssNfcH_Fe7C0l1vFK578smKvHl8q5L1DJj78lZTlbZxrmbqfI74KiGf6lDGg4JJGqUzWLuTWKyFXDq4-dtwzZOM-zwG1PfAvkr971qZE7SpiGY5Ff9XST1BhVICegisaGHtvcFsMtFQtmUYPJbgWwWGBjIDm_bk6yEMIe6HRb2VP9SkIDQIqAOl8POUOpNyOQ7_')",
+              }}
+            ></div>
+            <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-[#020611] via-[#020611]/80 to-[#020611]/30"></div>
+            {/* Subtle stars */}
+            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(1px 1px at 20px 30px, #ffffff, rgba(0,0,0,0)), radial-gradient(1px 1px at 40px 70px, #ffffff, rgba(0,0,0,0)), radial-gradient(1px 1px at 50px 160px, #ffffff, rgba(0,0,0,0)), radial-gradient(1.5px 1.5px at 90px 40px, #ffffff, rgba(0,0,0,0)), radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)), radial-gradient(1px 1px at 160px 120px, #ffffff, rgba(0,0,0,0))", backgroundSize: "200px 200px" }}></div>
+          </div>
         </div>
         <div className="max-w-container-max mx-auto px-lg relative z-10 grid grid-cols-1 md:grid-cols-2 gap-xl w-full">
           <div className="max-w-2xl">
@@ -61,7 +76,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="hidden md:flex justify-end items-center">
-            <div className="glass-hud p-base rounded-xl shadow-xl w-full max-w-[448px] overflow-hidden">
+            <div className="glass-hud p-base rounded-xl shadow-xl w-full max-w-[448px] overflow-hidden dark:bg-surface-container/30 dark:border dark:border-white/10 dark:backdrop-blur-md">
               <div className="relative h-64 w-full">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
@@ -94,7 +109,7 @@ export default function LandingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md group">
             {/* Feature 1 */}
-            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px]">
+            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px] dark:bg-surface-container/30 dark:border-white/10 dark:backdrop-blur-md">
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <Icon name="filter_drama" className="text-[28px]" />
               </div>
@@ -116,7 +131,7 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px]">
+            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px] dark:bg-surface-container/30 dark:border-white/10 dark:backdrop-blur-md">
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <Icon name="query_stats" className="text-[28px]" />
               </div>
@@ -127,7 +142,7 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px]">
+            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px] dark:bg-surface-container/30 dark:border-white/10 dark:backdrop-blur-md">
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <Icon name="eco" className="text-[28px]" />
               </div>
@@ -138,7 +153,7 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 5 */}
-            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px]">
+            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px] dark:bg-surface-container/30 dark:border-white/10 dark:backdrop-blur-md">
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <Icon name="agriculture" className="text-[28px]" />
               </div>
@@ -149,7 +164,7 @@ export default function LandingPage() {
             </div>
 
             {/* Feature 6 */}
-            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px]">
+            <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px] dark:bg-surface-container/30 dark:border-white/10 dark:backdrop-blur-md">
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <Icon name="emergency_home" className="text-[28px]" />
               </div>
@@ -171,31 +186,31 @@ export default function LandingPage() {
             <div className="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-outline-variant -z-10"></div>
             
             <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center font-headline-md text-primary mb-md shadow-sm">01</div>
+              <div className="w-16 h-16 rounded-full bg-white border-2 border-primary flex items-center justify-center font-headline-md text-primary mb-md shadow-sm dark:bg-surface-container/30 dark:backdrop-blur-md">01</div>
               <h4 className="font-label-md text-label-md mb-base uppercase tracking-wider text-primary">Upload</h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant px-md">Ingest raw multispectral .TIF or satellite API streams.</p>
             </div>
 
             <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">02</div>
+              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm dark:bg-surface-container/30 dark:border-white/20 dark:backdrop-blur-md">02</div>
               <h4 className="font-label-md text-label-md mb-base uppercase tracking-wider">Detect</h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant px-md">Automated segmentation of atmospheric occlusions.</p>
             </div>
 
             <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">03</div>
+              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm dark:bg-surface-container/30 dark:border-white/20 dark:backdrop-blur-md">03</div>
               <h4 className="font-label-md text-label-md mb-base uppercase tracking-wider">Reconstruct</h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant px-md">Generative AI fills masked areas with high fidelity.</p>
             </div>
 
             <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">04</div>
+              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm dark:bg-surface-container/30 dark:border-white/20 dark:backdrop-blur-md">04</div>
               <h4 className="font-label-md text-label-md mb-base uppercase tracking-wider">Analyze</h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant px-md">Extract feature data and temporal trend metrics.</p>
             </div>
 
             <div className="flex flex-col items-center text-center flex-1">
-              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm">05</div>
+              <div className="w-16 h-16 rounded-full bg-white border-2 border-outline-variant flex items-center justify-center font-headline-md text-on-surface-variant mb-md shadow-sm dark:bg-surface-container/30 dark:border-white/20 dark:backdrop-blur-md">05</div>
               <h4 className="font-label-md text-label-md mb-base uppercase tracking-wider">Report</h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant px-md">Export PDF, CSV, or direct GeoJSON integration.</p>
             </div>
@@ -208,14 +223,14 @@ export default function LandingPage() {
         <div className="max-w-container-max mx-auto px-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
             <div className="relative">
-              <div className="aspect-square bg-white rounded-xl shadow-lg p-base border border-outline-variant overflow-hidden">
+              <div className="aspect-square bg-white rounded-xl shadow-lg p-base border border-outline-variant overflow-hidden dark:bg-surface-container/30 dark:border-white/10 dark:backdrop-blur-md">
                 <img
                   className="w-full h-full object-cover"
                   alt="Agricultural heat map"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2GHOeMKl3UVHdxesU2X0Z_lawKcuaGbmMvMXnnfHonXpBXPzVwe63cTuSuNcu5b-eSUNa44HxtwYbnCwaKTUKoe6z7CyzbFB-43SQxrA0xdTUF5DuTNmcguVXJezFv-LDWD9Syca9GzerPmenb7ad8iv5dRAZwrq-obYF28gxoH8qFvvyg_tUI7TCNrvJvIlObEV9O_JtOTduxQil5viYKqBRhqnbl729QFdJOD1ivmqDUgGVa-LIAb1xbmXw7eORV7kL7q8IfX5g"
                 />
               </div>
-              <div className="absolute bottom-2 right-2 sm:-bottom-md sm:-right-md glass-hud p-md rounded-lg shadow-xl max-w-[240px]">
+              <div className="absolute bottom-2 right-2 sm:-bottom-md sm:-right-md glass-hud p-md rounded-lg shadow-xl max-w-[240px] dark:bg-surface-container/30 dark:border dark:border-white/10 dark:backdrop-blur-md">
                 <div className="flex items-center gap-2 mb-base">
                   <span className="w-[6px] h-[6px] bg-primary rounded-full"></span>
                   <span className="font-label-md text-label-md text-primary">Live Monitoring</span>

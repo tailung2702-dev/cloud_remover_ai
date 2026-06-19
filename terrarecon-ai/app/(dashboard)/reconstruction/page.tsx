@@ -47,7 +47,7 @@ export default function ReconstructionPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Page Header */}
-      <section className="px-lg py-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-end gap-md bg-surface">
+      <section className="px-lg py-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-end gap-md bg-surface dark:bg-[#060b17]/80 dark:border-[#1e293b]">
         <div>
           <div className="flex items-center gap-2 text-on-surface-variant mb-1">
             <span className="font-label-md text-label-md uppercase tracking-widest">Project Alpha-9</span>
@@ -73,7 +73,7 @@ export default function ReconstructionPage() {
         {/* Comparison Viewer (Main Canvas) */}
         <div className="col-span-1 lg:col-span-9 flex flex-col gap-lg min-w-0">
           <div 
-            className="relative flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden group select-none min-h-[380px] sm:min-h-[500px]"
+            className="relative flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden group select-none min-h-[380px] sm:min-h-[500px] dark:bg-[#0a1122]/60 dark:border-white/10"
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
@@ -117,7 +117,7 @@ export default function ReconstructionPage() {
             </div>
 
             {/* Floating Map HUD (Glassmorphism) */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-white/70 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-2xl sm:rounded-full border border-white/50 shadow-xl z-30 pointer-events-none w-[90%] sm:w-auto">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-white/70 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-2xl sm:rounded-full border border-white/50 shadow-xl z-30 pointer-events-none w-[90%] sm:w-auto dark:bg-[#060b17]/80 dark:border-white/10">
               <div className="flex items-center justify-between w-full sm:w-auto gap-2 sm:pr-4 sm:border-r border-outline-variant/30">
                 <div className="flex items-center gap-1.5">
                   <Icon name="location_on" className="text-primary text-sm sm:text-base" />
@@ -139,7 +139,7 @@ export default function ReconstructionPage() {
           </div>
 
           {/* Action Bar */}
-          <div className="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col md:flex-row gap-md justify-between items-stretch md:items-center">
+          <div className="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col md:flex-row gap-md justify-between items-stretch md:items-center dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex flex-col sm:flex-row gap-sm">
               <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-white rounded font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
                 <Icon name="download" className="text-[20px]" />
@@ -162,7 +162,7 @@ export default function ReconstructionPage() {
           <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Reconstruction Metrics</h3>
           
           {/* Metric Card 1 */}
-          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md flex flex-col gap-2">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md flex flex-col gap-2 dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex justify-between items-start">
               <span className="font-label-md text-label-md text-on-surface-variant">Reconstruction Accuracy</span>
               <Icon name="verified" filled className="text-primary opacity-50" />
@@ -180,7 +180,7 @@ export default function ReconstructionPage() {
           </div>
 
           {/* Metric Card 2 */}
-          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md flex flex-col gap-2">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md flex flex-col gap-2 dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex justify-between items-start">
               <span className="font-label-md text-label-md text-on-surface-variant">Quality Score (SSIM)</span>
               <Icon name="high_quality" filled className="text-secondary opacity-50" />
@@ -198,7 +198,7 @@ export default function ReconstructionPage() {
           </div>
 
           {/* Metric Card 3 */}
-          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md flex flex-col gap-2">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md flex flex-col gap-2 dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex justify-between items-start">
               <span className="font-label-md text-label-md text-on-surface-variant">Recovered Area</span>
               <Icon name="map" filled className="text-tertiary opacity-50" />
@@ -213,7 +213,7 @@ export default function ReconstructionPage() {
           {/* Technical Specs Panel */}
           <div className="mt-4">
             <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md">Technical Parameters</h3>
-            <div className="bg-surface-container-low rounded-xl p-md flex flex-col gap-3">
+            <div className="bg-surface-container-low rounded-xl p-md flex flex-col gap-3 dark:bg-[#060b17]/60 dark:border dark:border-white/10">
               <div className="flex justify-between items-center py-1 border-b border-outline-variant/30">
                 <span className="text-body-sm text-on-surface-variant">Resolution</span>
                 <span className="font-mono-data text-mono-data">0.5m/px</span>

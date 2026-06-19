@@ -11,7 +11,7 @@ export default function DashboardPage() {
 
       {/* Stats Bento Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
-        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl">
+        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-label-md text-outline uppercase tracking-wider">Images Processed</p>
           <div className="flex items-baseline gap-xs">
             <span className="font-headline-lg text-headline-lg text-primary">12,458</span>
@@ -24,7 +24,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl">
+        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-label-md text-outline uppercase tracking-wider">Cloud Coverage (Avg)</p>
           <div className="flex items-baseline gap-xs">
             <span className="font-headline-lg text-headline-lg text-primary">38%</span>
@@ -37,7 +37,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl">
+        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-label-md text-outline uppercase tracking-wider">Reconstruction Accuracy</p>
           <div className="flex items-baseline gap-xs">
             <span className="font-headline-lg text-headline-lg text-primary">94.6%</span>
@@ -50,7 +50,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl">
+        <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-label-md text-outline uppercase tracking-wider">Avg Processing Time</p>
           <div className="flex items-baseline gap-xs">
             <span className="font-headline-lg text-headline-lg text-primary">14 sec</span>
@@ -65,7 +65,7 @@ export default function DashboardPage() {
       </div>
 
       {/* NEW: Global Analysis Coverage Map */}
-      <div className="bg-surface-container-lowest border border-outline-variant relative overflow-hidden h-[500px] rounded-xl">
+      <div className="bg-surface-container-lowest border border-outline-variant relative overflow-hidden h-[500px] rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
         <div 
           className="absolute inset-0 opacity-40 pointer-events-none"
           style={{ backgroundImage: "radial-gradient(#dbe1ff 1px, transparent 1px)", backgroundSize: "20px 20px" }}
@@ -79,7 +79,7 @@ export default function DashboardPage() {
               <p className="text-body-sm text-outline">Real-time geospatial processing distribution</p>
             </div>
             {/* Region Stats Panel */}
-            <div className="bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant p-md rounded shadow-sm w-full sm:w-56 pointer-events-auto">
+            <div className="bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant p-md rounded shadow-sm w-full sm:w-56 pointer-events-auto dark:bg-[#060b17]/80 dark:border-white/10">
               <p className="font-label-md text-outline uppercase mb-sm tracking-tighter">Active Region Stats</p>
               <div className="space-y-sm">
                 <div className="flex justify-between items-center">
@@ -140,7 +140,7 @@ export default function DashboardPage() {
         {/* Left: Projects and Activity */}
         <div className="lg:col-span-8 space-y-lg">
           {/* Projects Table */}
-          <div className="bg-surface-container-lowest border border-outline-variant overflow-hidden rounded-xl">
+          <div className="bg-surface-container-lowest border border-outline-variant overflow-hidden rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="p-lg border-b border-outline-variant flex justify-between items-center">
               <h3 className="font-headline-md text-headline-md text-on-surface">Recent Projects</h3>
               <button className="text-primary font-label-md flex items-center gap-xs hover:underline">
@@ -193,7 +193,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Analysis Trends */}
-          <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+          <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex justify-between items-center mb-lg">
               <h3 className="font-headline-md text-headline-md text-on-surface">Data Analysis Trends</h3>
               <div className="flex gap-sm">
@@ -231,7 +231,7 @@ export default function DashboardPage() {
         {/* Right Column: Activity and Distribution */}
         <div className="lg:col-span-4 space-y-xl">
           {/* Analysis Distribution */}
-          <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+          <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <h3 className="font-headline-md text-headline-md text-on-surface mb-lg">Analysis Distribution</h3>
             <div className="relative w-48 h-48 mx-auto mb-lg flex items-center justify-center">
               {/* SVG Doughnut Mock */}
@@ -260,7 +260,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Recent Activity Timeline */}
-          <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl">
+          <div className="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex items-center justify-between mb-lg">
               <h3 className="font-headline-md text-headline-md text-on-surface">Recent Activity</h3>
               <span className="text-label-md text-primary font-bold">LIVE</span>
@@ -306,7 +306,7 @@ export default function DashboardPage() {
           </div>
 
           {/* System Status HUD */}
-          <div className="glass-hud p-lg rounded-xl flex items-center justify-between">
+          <div className="glass-hud p-lg rounded-xl flex items-center justify-between dark:bg-[#060b17]/80 dark:border dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex items-center gap-sm">
               <Icon name="memory" filled className="text-secondary" />
               <div>

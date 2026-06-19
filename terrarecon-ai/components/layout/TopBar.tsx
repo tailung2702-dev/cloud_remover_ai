@@ -9,7 +9,7 @@ export function TopBar() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="fixed top-0 right-0 left-0 lg:left-sidebar-width h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex items-center justify-between px-md lg:px-xl z-40">
+    <header className="fixed top-0 right-0 left-0 lg:left-sidebar-width h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex items-center justify-between px-md lg:px-xl z-40 dark:bg-[#0a1122]/80 dark:border-[#1e293b]">
       <div className="flex items-center flex-grow max-w-xl gap-sm mr-md">
         {/* Mobile Menu Toggle */}
         <button 

@@ -12,14 +12,14 @@ export default function UploadPage() {
       <div className="grid grid-cols-12 gap-lg">
         {/* Left Column: Upload Zone */}
         <div className="col-span-12 lg:col-span-7">
-          <div className="bg-white border border-[#E5E1D3] rounded-xl p-lg h-full flex flex-col">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl p-lg h-full flex flex-col dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="flex items-center justify-between mb-lg">
               <h3 className="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant">File Repository</h3>
               <span className="text-xs text-on-surface-variant bg-surface-container px-2 py-1 rounded">Supported: GeoTIFF, TIFF, JP2</span>
             </div>
             
             <div 
-              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg bg-surface-container-lowest shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] group hover:border-primary transition-colors cursor-pointer p-md sm:p-xl text-center"
+              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg bg-surface-container-lowest shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] group hover:border-primary transition-colors cursor-pointer p-md sm:p-xl text-center dark:bg-[#060b17]/40 dark:border-white/20 dark:hover:border-primary/70"
             >
               <div className="w-20 h-20 rounded-full bg-primary-container/5 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
                 <Icon name="upload_file" className="text-primary text-[48px]" />
@@ -32,7 +32,7 @@ export default function UploadPage() {
             </div>
 
             {/* Upload Progress (Mocked as visible for UI recreation) */}
-            <div className="mt-xl p-md bg-surface-container-low rounded-lg border border-surface-variant">
+            <div className="mt-xl p-md bg-surface-container-low rounded-lg border border-surface-variant dark:bg-[#060b17]/60 dark:border-white/10">
               <div className="flex justify-between items-center mb-2 gap-sm">
                 <div className="flex items-center gap-3 min-w-0">
                   <Icon name="image" className="text-primary shrink-0" />
@@ -53,12 +53,12 @@ export default function UploadPage() {
 
         {/* Right Column: Metadata Form */}
         <div className="col-span-12 lg:col-span-5">
-          <div className="bg-white border border-[#E5E1D3] rounded-xl p-lg">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl p-lg dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <h3 className="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant mb-lg">Mission Metadata</h3>
             <form className="space-y-md">
               <div>
                 <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Satellite Source</label>
-                <select className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary">
+                <select className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10">
                   <option>Sentinel-2 (ESA)</option>
                   <option>Landsat-8 (USGS)</option>
                   <option>LISS-4 (ISRO)</option>
@@ -70,11 +70,11 @@ export default function UploadPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-md">
                 <div>
                   <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Acquisition Date</label>
-                  <input className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="date" />
+                  <input className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10" type="date" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Processing Level</label>
-                  <select className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary">
+                  <select className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary dark:bg-[#060b17] dark:border-white/10">
                     <option>Level 1C (TOA)</option>
                     <option>Level 2A (BOA)</option>
                     <option>Raw (L0)</option>
@@ -108,7 +108,7 @@ export default function UploadPage() {
           </div>
 
           {/* Mini Preview Card */}
-          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md mt-lg flex items-start gap-md">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl p-md mt-lg flex items-start gap-md dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="w-20 h-20 rounded bg-surface-container overflow-hidden shrink-0 border border-outline-variant">
               <img 
                 className="w-full h-full object-cover" 
@@ -130,7 +130,7 @@ export default function UploadPage() {
 
       {/* Dashboard Analytics Bottom Section */}
       <div className="mt-xl grid grid-cols-1 md:grid-cols-3 gap-lg">
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-on-surface-variant mb-1 uppercase tracking-wider">Cloud Quota</p>
           <div className="flex items-baseline gap-2">
             <span className="font-headline-lg text-on-surface">14.2</span>
@@ -141,7 +141,7 @@ export default function UploadPage() {
           </div>
         </div>
 
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-on-surface-variant mb-1 uppercase tracking-wider">Active Ingestions</p>
           <div className="flex items-baseline gap-2">
             <span className="font-headline-lg text-primary">03</span>
@@ -155,7 +155,7 @@ export default function UploadPage() {
           </div>
         </div>
 
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <p className="font-label-md text-on-surface-variant mb-1 uppercase tracking-wider">API Health</p>
           <div className="flex items-baseline gap-2">
             <span className="font-headline-lg text-on-secondary-container">99.9%</span>

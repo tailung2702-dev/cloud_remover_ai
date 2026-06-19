@@ -22,7 +22,7 @@ export default function ReportsPage() {
 
       {/* Bento Statistics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase">Total Reports</span>
           <div className="mt-md flex items-baseline gap-sm">
             <span className="font-headline-lg text-headline-lg text-primary">1,284</span>
@@ -32,7 +32,7 @@ export default function ReportsPage() {
           </div>
         </div>
         
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase">Generated This Month</span>
           <div className="mt-md flex items-baseline gap-sm">
             <span className="font-headline-lg text-headline-lg text-primary">142</span>
@@ -40,7 +40,7 @@ export default function ReportsPage() {
           </div>
         </div>
         
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase">Processing Accuracy</span>
           <div className="mt-md flex items-baseline gap-sm w-full">
             <span className="font-headline-lg text-headline-lg text-primary">99.2%</span>
@@ -50,7 +50,7 @@ export default function ReportsPage() {
           </div>
         </div>
         
-        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow">
+        <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase">Export Count</span>
           <div className="mt-md flex items-baseline justify-between gap-sm">
             <span className="font-headline-lg text-headline-lg text-primary">5.8k</span>
@@ -60,32 +60,32 @@ export default function ReportsPage() {
       </div>
 
       {/* Filters Section */}
-      <div className="bg-white border border-[#E5E1D3] p-md rounded-xl flex flex-col lg:flex-row lg:items-center gap-lg">
+      <div className="bg-white border border-[#E5E1D3] p-md rounded-xl flex flex-col lg:flex-row lg:items-center gap-lg dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
         <div className="flex items-center gap-sm">
           <Icon name="filter_list" className="text-on-surface-variant" />
           <span className="font-label-md text-label-md uppercase text-on-surface">Filters:</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-1 gap-md w-full">
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px] dark:bg-[#060b17] dark:border-white/10 dark:text-on-surface">
             <option>Date Range</option>
             <option>Last 24 Hours</option>
             <option>Last 7 Days</option>
             <option>Current Quarter</option>
           </select>
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px] dark:bg-[#060b17] dark:border-white/10 dark:text-on-surface">
             <option>Region</option>
             <option>North America</option>
             <option>Europe (EU)</option>
             <option>Asia Pacific</option>
             <option>South America</option>
           </select>
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px] dark:bg-[#060b17] dark:border-white/10 dark:text-on-surface">
             <option>Satellite Source</option>
             <option>Sentinel-2A</option>
             <option>Landsat 9</option>
             <option>TerraRecon-1</option>
           </select>
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px] dark:bg-[#060b17] dark:border-white/10 dark:text-on-surface">
             <option>Report Type</option>
             <option>Agriculture</option>
             <option>Environmental</option>
@@ -99,7 +99,7 @@ export default function ReportsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl">
         {/* Report History Table (Left 2 Columns) */}
         <div className="lg:col-span-2 space-y-md min-w-0">
-          <div className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[650px] lg:min-w-0">
               <thead>
@@ -200,7 +200,7 @@ export default function ReportsPage() {
 
         {/* Preview Card (Right Column) */}
         <div className="space-y-md">
-          <div className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden flex flex-col shadow-sm">
+          <div className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden flex flex-col shadow-sm dark:bg-[#0a1122]/60 dark:border-white/10 dark:backdrop-blur-md">
             <div className="relative h-48 bg-surface-container-high group">
               <img 
                 className="w-full h-full object-cover" 
@@ -219,19 +219,19 @@ export default function ReportsPage() {
               </div>
               
               <div className="grid grid-cols-2 gap-md">
-                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3]">
+                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3] dark:bg-[#060b17]/60 dark:border-white/10">
                   <span className="font-label-md text-label-md text-on-surface-variant block uppercase">Coverage Area</span>
                   <span className="font-mono-data text-mono-data font-bold">12,452 ha</span>
                 </div>
-                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3]">
+                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3] dark:bg-[#060b17]/60 dark:border-white/10">
                   <span className="font-label-md text-label-md text-on-surface-variant block uppercase">Cloud Cover</span>
                   <span className="font-mono-data text-mono-data font-bold">0.42%</span>
                 </div>
-                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3]">
+                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3] dark:bg-[#060b17]/60 dark:border-white/10">
                   <span className="font-label-md text-label-md text-on-surface-variant block uppercase">Accuracy</span>
                   <span className="font-mono-data text-mono-data font-bold text-secondary">99.8%</span>
                 </div>
-                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3]">
+                <div className="bg-surface-container-low p-sm rounded-lg border border-[#E5E1D3] dark:bg-[#060b17]/60 dark:border-white/10">
                   <span className="font-label-md text-label-md text-on-surface-variant block uppercase">Quality</span>
                   <span className="font-mono-data text-mono-data font-bold">Tier 1</span>
                 </div>
@@ -242,10 +242,10 @@ export default function ReportsPage() {
                   <Icon name="picture_as_pdf" className="text-[18px]" /> DOWNLOAD PDF
                 </button>
                 <div className="grid grid-cols-2 gap-sm">
-                  <button className="bg-white border border-[#E5E1D3] text-on-surface py-sm rounded-lg font-label-md text-label-md flex items-center justify-center gap-xs hover:bg-surface-container-low transition-colors">
+                  <button className="bg-white border border-[#E5E1D3] text-on-surface py-sm rounded-lg font-label-md text-label-md flex items-center justify-center gap-xs hover:bg-surface-container-low transition-colors dark:bg-[#060b17]/60 dark:border-white/10">
                     <Icon name="csv" className="text-[18px]" /> EXPORT CSV
                   </button>
-                  <button className="bg-white border border-[#E5E1D3] text-on-surface py-sm rounded-lg font-label-md text-label-md flex items-center justify-center gap-xs hover:bg-surface-container-low transition-colors">
+                  <button className="bg-white border border-[#E5E1D3] text-on-surface py-sm rounded-lg font-label-md text-label-md flex items-center justify-center gap-xs hover:bg-surface-container-low transition-colors dark:bg-[#060b17]/60 dark:border-white/10">
                     <Icon name="share" className="text-[18px]" /> SHARE
                   </button>
                 </div>

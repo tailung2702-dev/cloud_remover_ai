@@ -31,7 +31,7 @@ export function Sidebar() {
 
       <aside className={`fixed left-0 top-0 h-screen w-sidebar-width bg-surface-container-low border-r border-outline-variant flex flex-col py-xl transition-transform duration-200 ease-in-out z-50 ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } lg:translate-x-0`}>
+      } lg:translate-x-0 dark:bg-[#060b17]/80 dark:backdrop-blur-md dark:border-[#1e293b]`}>
         <div className="px-lg mb-xl flex items-start justify-between">
           <div>
             <h1 className="font-headline-md text-headline-md font-bold text-primary">TerraRecon AI</h1>
