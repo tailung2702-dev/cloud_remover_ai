@@ -2,9 +2,11 @@
 
 import { Icon } from "../ui/Icon";
 import { useSidebar } from "./SidebarContext";
+import { useTheme } from "../../contexts/ThemeContext";
 
 export function TopBar() {
   const { toggle } = useSidebar();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <header className="fixed top-0 right-0 left-0 lg:left-sidebar-width h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant flex items-center justify-between px-md lg:px-xl z-40">
@@ -29,6 +31,13 @@ export function TopBar() {
       </div>
       
       <div className="flex items-center gap-xs sm:gap-md shrink-0">
+        <button 
+          onClick={toggleTheme} 
+          className="p-xs hover:bg-surface-container-low rounded-full transition-transform scale-95 active:opacity-80"
+          aria-label="Toggle Theme"
+        >
+          <Icon name={theme === 'dark' ? 'light_mode' : 'dark_mode'} className="text-on-surface-variant" />
+        </button>
         <button className="p-xs hover:bg-surface-container-low rounded-full transition-transform scale-95 active:opacity-80">
           <Icon name="notifications" className="text-on-surface-variant" />
         </button>
