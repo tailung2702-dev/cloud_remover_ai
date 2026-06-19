@@ -10,7 +10,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Stats Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
         <div className="bg-surface-container-lowest border border-outline-variant p-lg flex flex-col gap-xs transition-shadow hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] rounded-xl">
           <p className="font-label-md text-label-md text-outline uppercase tracking-wider">Images Processed</p>
           <div className="flex items-baseline gap-xs">
@@ -73,13 +73,13 @@ export default function DashboardPage() {
 
         {/* Map UI Overlay */}
         <div className="absolute inset-0 p-lg flex flex-col pointer-events-none">
-          <div className="flex justify-between items-start">
+          <div className="flex flex-col sm:flex-row justify-between items-start gap-md">
             <div className="pointer-events-auto">
               <h3 className="font-headline-md text-headline-md text-on-surface">Global Analysis Coverage</h3>
               <p className="text-body-sm text-outline">Real-time geospatial processing distribution</p>
             </div>
             {/* Region Stats Panel */}
-            <div className="bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant p-md rounded shadow-sm w-56 pointer-events-auto">
+            <div className="bg-surface-container-lowest/90 backdrop-blur-md border border-outline-variant p-md rounded shadow-sm w-full sm:w-56 pointer-events-auto">
               <p className="font-label-md text-outline uppercase mb-sm tracking-tighter">Active Region Stats</p>
               <div className="space-y-sm">
                 <div className="flex justify-between items-center">
@@ -97,13 +97,13 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
-          <div className="mt-auto flex justify-between items-end">
+          <div className="mt-auto flex flex-col sm:flex-row justify-between items-start sm:items-end gap-sm">
             {/* Coordinate Display */}
-            <div className="bg-on-surface/80 text-surface-container-lowest px-sm py-xs rounded font-mono-data text-[11px] pointer-events-auto">
+            <div className="bg-on-surface/80 text-surface-container-lowest px-sm py-xs rounded font-mono-data text-[9px] sm:text-[11px] pointer-events-auto">
               LAT: 23.512° N | LON: 80.331° E | ELEV: 421m
             </div>
             {/* Map Controls */}
-            <div className="flex flex-col gap-xs pointer-events-auto">
+            <div className="flex flex-row sm:flex-col gap-xs pointer-events-auto self-end sm:self-auto">
               <button className="w-8 h-8 bg-surface-container-lowest border border-outline-variant flex items-center justify-center hover:bg-surface-container-high rounded">
                 <Icon name="add" className="text-[20px]" />
               </button>
@@ -211,16 +211,16 @@ export default function DashboardPage() {
                 <div className="border-t border-outline-variant/30 w-full h-full"></div>
                 <div className="border-t border-outline-variant/30 w-full h-full"></div>
               </div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '40%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '65%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '55%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '85%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '70%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '95%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '75%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '60%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '80%' }}></div>
-              <div className="w-12 bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '65%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '40%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '65%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '55%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '85%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '70%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '95%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '75%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '60%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '80%' }}></div>
+              <div className="w-full max-w-[48px] bg-primary/20 hover:bg-primary transition-all rounded-t-sm" style={{ height: '65%' }}></div>
             </div>
             <div className="flex justify-between mt-sm text-outline font-label-md px-xs">
               <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>

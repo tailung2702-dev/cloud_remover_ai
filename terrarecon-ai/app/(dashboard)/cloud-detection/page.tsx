@@ -7,6 +7,7 @@ export default function CloudDetectionPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [showToast, setShowToast] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
 
   useEffect(() => {
     // Show a brief success toast after 1 second
@@ -16,6 +17,24 @@ export default function CloudDetectionPage() {
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(containerRef.current);
+    
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -40,7 +59,7 @@ export default function CloudDetectionPage() {
   return (
     <div className="space-y-xl pb-24">
       {/* Header Section */}
-      <div className="mb-lg flex justify-between items-end">
+      <div className="mb-lg flex flex-col sm:flex-row justify-between items-start sm:items-end gap-md">
         <div>
           <nav className="flex items-center gap-2 text-on-surface-variant mb-2">
             <span className="font-label-md text-label-md uppercase tracking-widest">Project 882-Alpha</span>
@@ -50,12 +69,12 @@ export default function CloudDetectionPage() {
           <h2 className="font-headline-lg text-headline-lg text-on-surface">Cloud Detection Analysis</h2>
           <p className="text-on-surface-variant font-body-md mt-1">Satellite: Sentinel-2B | Acquisition: 2024-05-12 14:22:01 UTC | Region: Amazon Basin, Brazil</p>
         </div>
-        <div className="flex gap-2">
-          <button className="px-md py-2 border border-outline-variant rounded hover:bg-surface-container transition-colors flex items-center gap-2 text-on-surface font-label-md">
+        <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+          <button className="flex-1 sm:flex-none px-md py-2 border border-outline-variant rounded hover:bg-surface-container transition-colors flex items-center justify-center gap-2 text-on-surface font-label-md">
             <Icon name="download" className="text-[18px]" />
             Export Mask
           </button>
-          <button className="px-md py-2 bg-primary text-white rounded hover:shadow-lg transition-all flex items-center gap-2 font-label-md">
+          <button className="flex-1 sm:flex-none px-md py-2 bg-primary text-white rounded hover:shadow-lg transition-all flex items-center justify-center gap-2 font-label-md">
             <Icon name="share" className="text-[18px]" />
             Share Report
           </button>
@@ -67,8 +86,7 @@ export default function CloudDetectionPage() {
         {/* Main Comparison Viewer */}
         <div className="col-span-12 lg:col-span-8 space-y-lg">
           <div 
-            className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden relative group select-none" 
-            style={{ height: "520px" }}
+            className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden relative group select-none h-[380px] sm:h-[520px]" 
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
@@ -78,8 +96,8 @@ export default function CloudDetectionPage() {
               {/* Left Side: Original */}
               <div className="h-full relative overflow-hidden" style={{ width: `${sliderPosition}%` }}>
                 <img 
-                  className="absolute top-0 left-0 h-full w-[100vw] max-w-none object-cover" 
-                  style={{ width: containerRef.current?.offsetWidth || '100%' }}
+                  className="absolute top-0 left-0 h-full max-w-none object-cover" 
+                  style={{ width: containerWidth ? `${containerWidth}px` : '100%', maxWidth: 'none' }}
                   alt="Original RGB" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL4Lo1RuSiRjnJhkUuzRKmj2jpEaN5B8zH4KCoRtffcl__O03AajQiHmcS-mQZNQmQRFS1ce_Sws634lj82x-HKxkhFLiy34recWh68yBsXItm8lBykzGBvo8AXD2kZd-SwSu06EzguKDJB12HEZe9Nj4DwiLTBpyAAXF_THZJThICi-jiqrJ6w7j19aI_lUGa949iDZ-fbLd5VFBa99RK4K4_iHav1P_Eg9qsS-PX2icWu-CXgobDhzZsctxzJqCIg1pj7hbNhSYJ" 
                 />
@@ -89,8 +107,8 @@ export default function CloudDetectionPage() {
               {/* Right Side: Cloud Mask */}
               <div className="h-full relative overflow-hidden flex-1 border-l border-white/20">
                 <img 
-                  className="absolute top-0 right-0 h-full w-[100vw] max-w-none object-cover" 
-                  style={{ width: containerRef.current?.offsetWidth || '100%', right: '0px' }}
+                  className="absolute top-0 right-0 h-full max-w-none object-cover" 
+                  style={{ width: containerWidth ? `${containerWidth}px` : '100%', right: '0px', maxWidth: 'none' }}
                   alt="Albedo Mask" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0HxWLanzhLrVIBi7tbaovJBr0FcEwAKE4T_w3gm4aOW1DTHRjkU3mBLTTZSVTHUzHr1gdvPW5VoQjIQIi9LmebVwr9thFl0jwnsjeH7dK_SWX0pSf6ljcm-6bMFuIP1mHilSW22XCWpdUidJfpUWDZAYPOk_QhpW8EguSb-ECZmUsyi-b7yU5rH0lQh8wGa-UOZMJ1obPfp5ujDjEz4U5tLRUvFEShhzwosBkKw8u6D34_OWMn-AEtbGAy6QiU9u09Jmu5cGU01Yb" 
                 />
@@ -99,13 +117,13 @@ export default function CloudDetectionPage() {
             </div>
 
             {/* HUD Controls */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-hud px-4 py-2 rounded-full flex items-center gap-6 z-30">
-              <div className="flex items-center gap-4 border-r border-outline-variant/30 pr-4">
+            <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 glass-hud px-4 py-2 rounded-2xl sm:rounded-full flex flex-col sm:flex-row items-center gap-2 sm:gap-6 z-30 w-[90%] sm:w-auto pointer-events-none">
+              <div className="flex items-center justify-center gap-4 sm:border-r border-outline-variant/30 sm:pr-4 w-full sm:w-auto pb-1 sm:pb-0 border-b sm:border-b-0 border-outline-variant/20 pointer-events-auto">
                 <button className="hover:bg-primary/10 p-1 rounded transition-colors"><Icon name="zoom_in" className="text-primary" /></button>
                 <button className="hover:bg-primary/10 p-1 rounded transition-colors"><Icon name="zoom_out" className="text-primary" /></button>
                 <button className="hover:bg-primary/10 p-1 rounded transition-colors"><Icon name="layers" className="text-primary" /></button>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3 w-full sm:w-auto pointer-events-auto">
                 <span className="font-label-md text-label-md text-on-surface-variant">Mask Opacity</span>
                 <input className="w-24 h-1 bg-primary-container rounded-full appearance-none accent-primary" type="range" defaultValue={85} />
                 <span className="font-mono-data text-mono-data text-primary">85%</span>

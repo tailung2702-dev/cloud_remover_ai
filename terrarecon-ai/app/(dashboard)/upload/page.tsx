@@ -19,7 +19,7 @@ export default function UploadPage() {
             </div>
             
             <div 
-              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg bg-surface-container-lowest shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] group hover:border-primary transition-colors cursor-pointer p-xl text-center"
+              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg bg-surface-container-lowest shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] group hover:border-primary transition-colors cursor-pointer p-md sm:p-xl text-center"
             >
               <div className="w-20 h-20 rounded-full bg-primary-container/5 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
                 <Icon name="upload_file" className="text-primary text-[48px]" />
@@ -33,12 +33,12 @@ export default function UploadPage() {
 
             {/* Upload Progress (Mocked as visible for UI recreation) */}
             <div className="mt-xl p-md bg-surface-container-low rounded-lg border border-surface-variant">
-              <div className="flex justify-between items-center mb-2">
-                <div className="flex items-center gap-3">
-                  <Icon name="image" className="text-primary" />
-                  <span className="font-label-md text-on-surface">LC08_L1TP_148043_20231024_02_T1.tif</span>
+              <div className="flex justify-between items-center mb-2 gap-sm">
+                <div className="flex items-center gap-3 min-w-0">
+                  <Icon name="image" className="text-primary shrink-0" />
+                  <span className="font-label-md text-on-surface truncate" title="LC08_L1TP_148043_20231024_02_T1.tif">LC08_L1TP_148043_20231024_02_T1.tif</span>
                 </div>
-                <span className="font-mono-data text-primary">74%</span>
+                <span className="font-mono-data text-primary shrink-0">74%</span>
               </div>
               <div className="w-full bg-surface-container-highest h-1.5 rounded-full overflow-hidden">
                 <div className="bg-primary h-full w-[74%] rounded-full"></div>
@@ -67,7 +67,7 @@ export default function UploadPage() {
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-md">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-md">
                 <div>
                   <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-tighter mb-1">Acquisition Date</label>
                   <input className="w-full h-10 bg-surface-container-lowest border border-outline-variant rounded px-3 text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="date" />

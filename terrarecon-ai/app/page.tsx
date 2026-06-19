@@ -5,7 +5,7 @@ export default function LandingPage() {
   return (
     <div className="text-on-surface">
       {/* Top Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 h-16 flex justify-between items-center px-lg z-50 bg-surface/80 backdrop-blur-md border-b border-surface-variant/20">
+      <nav className="fixed top-0 left-0 right-0 h-16 flex justify-between items-center px-md sm:px-lg z-50 bg-surface/80 backdrop-blur-md border-b border-surface-variant/20">
         <div className="flex items-center gap-2">
           <span className="font-headline-md text-headline-md font-bold text-primary">TerraRecon</span>
         </div>
@@ -15,18 +15,18 @@ export default function LandingPage() {
           <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Enterprise</a>
           <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
         </div>
-        <div className="flex items-center gap-md">
-          <Link href="/login" className="px-md py-xs font-label-md text-label-md text-on-surface-variant border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
+        <div className="flex items-center gap-xs sm:gap-md">
+          <Link href="/login" className="px-sm sm:px-md py-xs font-label-md text-label-md text-on-surface-variant border border-outline-variant rounded-lg hover:bg-surface-container transition-colors">
             Sign In
           </Link>
-          <Link href="/dashboard" className="px-md py-xs font-label-md text-label-md bg-primary text-on-primary rounded-lg hover:opacity-90 transition-opacity">
+          <Link href="/dashboard" className="px-sm sm:px-md py-xs font-label-md text-label-md bg-primary text-on-primary rounded-lg hover:opacity-90 transition-opacity">
             Start Analysis
           </Link>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen md:h-screen flex items-center overflow-hidden py-20 md:py-0">
         <div className="absolute inset-0 z-0">
           <div
             className="w-full h-full bg-cover bg-center"
@@ -35,7 +35,7 @@ export default function LandingPage() {
                 "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnOcqj-6EinG4rEpJciiWUazsOncFX8o_Ef2ZeBmfv0AxGPkbClsoH0Ro65H5CTllJb5GQENZJS6shbl7gmvOGhoRlBH6meHoDsdigH1ORcNWmgK_jIpyS0y0yG7uroDHRKkGw70p3nA7RK28lSJGozJeM42CIHx2NpK6ftGY_ffxpfC5X4CS3a7TuGnsU7yOcphht9HlVRcqFTySi0PdTwlw9MDW0gNGSjd25M3REeyLKxr6Rm8VmmaGWjM5tswFqhhSQavlu95uq')",
             }}
           ></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/40 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-surface/95 via-surface/90 to-surface/40 md:from-surface/90 md:via-surface/40 md:to-transparent"></div>
         </div>
         <div className="max-w-container-max mx-auto px-lg relative z-10 grid grid-cols-1 md:grid-cols-2 gap-xl w-full">
           <div className="max-w-2xl">
@@ -92,7 +92,7 @@ export default function LandingPage() {
               Our suite of AI-driven tools enables researchers to bypass atmospheric interference and derive true value from multi-spectral imagery.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-md group">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md group">
             {/* Feature 1 */}
             <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col gap-md transition-all duration-200 ease-in-out hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] hover:-translate-y-[2px]">
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
@@ -215,7 +215,7 @@ export default function LandingPage() {
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2GHOeMKl3UVHdxesU2X0Z_lawKcuaGbmMvMXnnfHonXpBXPzVwe63cTuSuNcu5b-eSUNa44HxtwYbnCwaKTUKoe6z7CyzbFB-43SQxrA0xdTUF5DuTNmcguVXJezFv-LDWD9Syca9GzerPmenb7ad8iv5dRAZwrq-obYF28gxoH8qFvvyg_tUI7TCNrvJvIlObEV9O_JtOTduxQil5viYKqBRhqnbl729QFdJOD1ivmqDUgGVa-LIAb1xbmXw7eORV7kL7q8IfX5g"
                 />
               </div>
-              <div className="absolute -bottom-md -right-md glass-hud p-md rounded-lg shadow-xl max-w-[240px]">
+              <div className="absolute bottom-2 right-2 sm:-bottom-md sm:-right-md glass-hud p-md rounded-lg shadow-xl max-w-[240px]">
                 <div className="flex items-center gap-2 mb-base">
                   <span className="w-[6px] h-[6px] bg-primary rounded-full"></span>
                   <span className="font-label-md text-label-md text-primary">Live Monitoring</span>

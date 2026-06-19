@@ -9,19 +9,19 @@ export default function ReportsPage() {
   return (
     <div className="space-y-xl pb-24">
       {/* Page Header */}
-      <div className="flex justify-between items-end">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-md">
         <div>
           <h2 className="font-headline-xl text-headline-xl text-on-surface">Reports</h2>
           <p className="font-body-lg text-body-lg text-on-surface-variant mt-1">Generate, manage, and export analysis reports.</p>
         </div>
-        <button className="flex items-center gap-sm bg-primary text-white px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+        <button className="w-full sm:w-auto flex items-center justify-center gap-sm bg-primary text-white px-lg py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
           <Icon name="add" className="text-[18px]" />
           CREATE NEW REPORT
         </button>
       </div>
 
       {/* Bento Statistics Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
         <div className="bg-white border border-[#E5E1D3] p-lg rounded-xl flex flex-col justify-between hover:shadow-[0px_4px_12px_rgba(26,90,215,0.05)] transition-shadow">
           <span className="font-label-md text-label-md text-on-surface-variant uppercase">Total Reports</span>
           <div className="mt-md flex items-baseline gap-sm">
@@ -60,47 +60,48 @@ export default function ReportsPage() {
       </div>
 
       {/* Filters Section */}
-      <div className="bg-white border border-[#E5E1D3] p-md rounded-xl flex flex-wrap items-center gap-lg">
+      <div className="bg-white border border-[#E5E1D3] p-md rounded-xl flex flex-col lg:flex-row lg:items-center gap-lg">
         <div className="flex items-center gap-sm">
           <Icon name="filter_list" className="text-on-surface-variant" />
           <span className="font-label-md text-label-md uppercase text-on-surface">Filters:</span>
         </div>
-        <div className="flex flex-1 gap-md">
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary min-w-[140px] text-on-surface">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-1 gap-md w-full">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
             <option>Date Range</option>
             <option>Last 24 Hours</option>
             <option>Last 7 Days</option>
             <option>Current Quarter</option>
           </select>
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary min-w-[140px] text-on-surface">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
             <option>Region</option>
             <option>North America</option>
             <option>Europe (EU)</option>
             <option>Asia Pacific</option>
             <option>South America</option>
           </select>
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary min-w-[140px] text-on-surface">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
             <option>Satellite Source</option>
             <option>Sentinel-2A</option>
             <option>Landsat 9</option>
             <option>TerraRecon-1</option>
           </select>
-          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary min-w-[140px] text-on-surface">
+          <select className="bg-white border border-[#E5E1D3] rounded-lg px-md py-sm font-body-sm text-body-sm focus:ring-1 focus:ring-primary text-on-surface w-full lg:min-w-[140px]">
             <option>Report Type</option>
             <option>Agriculture</option>
             <option>Environmental</option>
             <option>Urban Planning</option>
           </select>
         </div>
-        <button className="text-primary font-label-md text-label-md hover:underline">Clear All</button>
+        <button className="text-primary font-label-md text-label-md hover:underline self-end lg:self-auto">Clear All</button>
       </div>
 
       {/* Content Grid: Table + Preview Card */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl">
         {/* Report History Table (Left 2 Columns) */}
-        <div className="lg:col-span-2 space-y-md">
+        <div className="lg:col-span-2 space-y-md min-w-0">
           <div className="bg-white border border-[#E5E1D3] rounded-xl overflow-hidden">
-            <table className="w-full text-left border-collapse">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse min-w-[650px] lg:min-w-0">
               <thead>
                 <tr className="bg-surface-container-low border-b border-outline-variant">
                   <th className="px-lg py-md font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Report Name</th>
@@ -181,8 +182,9 @@ export default function ReportsPage() {
                 </tr>
               </tbody>
             </table>
+            </div>
             
-            <div className="px-lg py-md bg-surface-container-low flex items-center justify-between">
+            <div className="px-lg py-md bg-surface-container-low flex items-center justify-between border-t border-outline-variant">
               <span className="font-body-sm text-body-sm text-on-surface-variant">Showing 4 of 1,284 results</span>
               <div className="flex gap-sm">
                 <button className="p-1 rounded border border-outline-variant hover:bg-white disabled:opacity-30" disabled>

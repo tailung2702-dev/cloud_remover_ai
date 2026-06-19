@@ -21,7 +21,7 @@ export default function SettingsPage() {
                 Profile Settings
               </h2>
             </div>
-            <div className="p-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
+            <div className="p-md sm:p-xl grid grid-cols-1 md:grid-cols-2 gap-lg">
               <div className="space-y-xs">
                 <label className="font-label-md text-label-md text-on-surface-variant">Full Name</label>
                 <input className="w-full bg-surface-container-low border border-outline-variant rounded py-xs px-sm text-body-md focus:ring-1 focus:ring-primary focus:border-primary" type="text" defaultValue="Elena Vance" />
@@ -44,7 +44,7 @@ export default function SettingsPage() {
                 </select>
               </div>
             </div>
-            <div className="px-xl py-md bg-surface flex justify-end gap-md">
+            <div className="px-md py-sm sm:px-xl sm:py-md bg-surface flex justify-end gap-md">
               <button className="px-lg py-xs border border-outline-variant rounded text-body-md font-medium hover:bg-surface-container-high transition-colors">Cancel</button>
               <button className="px-lg py-xs bg-primary text-white rounded text-body-md font-medium hover:opacity-90 transition-all shadow-sm">Save Changes</button>
             </div>
@@ -58,7 +58,7 @@ export default function SettingsPage() {
                 Analysis Preferences
               </h2>
             </div>
-            <div className="p-xl">
+            <div className="p-md sm:p-xl">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
                 <div className="space-y-md">
                   <div className="space-y-xs">
@@ -91,7 +91,7 @@ export default function SettingsPage() {
                   </div>
                   <div className="space-y-xs">
                     <label className="font-label-md text-label-md text-on-surface-variant">Report Format</label>
-                    <div className="grid grid-cols-2 gap-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-sm">
                       <div className="flex items-center gap-sm p-sm border border-outline rounded bg-surface cursor-pointer hover:border-primary transition-colors">
                         <Icon name="picture_as_pdf" className="text-primary text-[20px]" />
                         <span className="text-body-sm font-medium">Standard PDF</span>
@@ -115,7 +115,7 @@ export default function SettingsPage() {
                 Security
               </h2>
             </div>
-            <div className="p-xl space-y-lg">
+            <div className="p-md sm:p-xl space-y-lg">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
                 <div className="space-y-xs">
                   <label className="font-label-md text-label-md text-on-surface-variant">Current Password</label>
@@ -147,7 +147,7 @@ export default function SettingsPage() {
                 Notifications
               </h2>
             </div>
-            <div className="p-xl space-y-lg">
+            <div className="p-md sm:p-xl space-y-lg">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-body-md font-semibold">Email Notifications</p>
@@ -199,7 +199,7 @@ export default function SettingsPage() {
                 Danger Zone
               </h2>
             </div>
-            <div className="p-xl space-y-md">
+            <div className="p-md sm:p-xl space-y-md">
               <button className="w-full flex items-center justify-between px-lg py-sm border border-outline-variant rounded hover:bg-surface-container-low transition-colors group">
                 <div className="flex items-center gap-md">
                   <Icon name="file_download" className="text-on-surface-variant group-hover:text-primary transition-colors" />
@@ -238,15 +238,14 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* Footer Stats */}
       <footer className="mt-xl pt-lg border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-md">
-        <div className="flex items-center gap-xl">
-          <div>
+        <div className="flex flex-col sm:flex-row items-center gap-md sm:gap-xl">
+          <div className="text-center sm:text-left">
             <p className="text-label-md font-bold text-on-surface-variant uppercase">Current Plan</p>
             <p className="text-body-md font-semibold text-primary">Enterprise Pro Suite</p>
           </div>
-          <div className="h-8 w-[1px] bg-outline-variant"></div>
-          <div>
+          <div className="hidden sm:block h-8 w-[1px] bg-outline-variant"></div>
+          <div className="text-center sm:text-left">
             <p className="text-label-md font-bold text-on-surface-variant uppercase">Storage Used</p>
             <p className="text-body-md font-semibold text-on-surface">1.2 TB / 5 TB</p>
           </div>

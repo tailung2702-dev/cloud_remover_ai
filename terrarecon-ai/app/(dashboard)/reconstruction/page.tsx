@@ -6,6 +6,25 @@ import { Icon } from "@/components/ui/Icon";
 export default function ReconstructionPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [containerWidth, setContainerWidth] = useState(0);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+    
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(containerRef.current);
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (containerRef.current && e.buttons === 1) { // Only update while dragging
@@ -28,7 +47,7 @@ export default function ReconstructionPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Page Header */}
-      <section className="px-lg py-md border-b border-outline-variant flex justify-between items-end bg-surface">
+      <section className="px-lg py-md border-b border-outline-variant flex flex-col sm:flex-row justify-between items-start sm:items-end gap-md bg-surface">
         <div>
           <div className="flex items-center gap-2 text-on-surface-variant mb-1">
             <span className="font-label-md text-label-md uppercase tracking-widest">Project Alpha-9</span>
@@ -37,24 +56,24 @@ export default function ReconstructionPage() {
           </div>
           <h2 className="font-headline-lg text-headline-lg text-primary">Reconstruction Analysis</h2>
         </div>
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-surface border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+        <div className="flex flex-wrap gap-3 w-full sm:w-auto">
+          <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-surface border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
             <Icon name="share" className="text-[18px]" />
-            Share Analysis
+            Share
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded font-label-md text-label-md hover:shadow-lg transition-all active:scale-95">
+          <button className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white rounded font-label-md text-label-md hover:shadow-lg transition-all active:scale-95">
             <Icon name="add" className="text-[18px]" />
-            New Analysis Task
+            New Task
           </button>
         </div>
       </section>
 
       {/* Main Workspace Grid */}
-      <div className="flex-1 p-lg grid grid-cols-12 gap-lg overflow-hidden pb-24">
+      <div className="flex-grow p-md lg:p-lg grid grid-cols-1 lg:grid-cols-12 gap-lg pb-24">
         {/* Comparison Viewer (Main Canvas) */}
-        <div className="col-span-9 flex flex-col gap-lg">
+        <div className="col-span-1 lg:col-span-9 flex flex-col gap-lg min-w-0">
           <div 
-            className="relative flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden group select-none min-h-[500px]"
+            className="relative flex-1 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden group select-none min-h-[380px] sm:min-h-[500px]"
             ref={containerRef}
             onMouseMove={handleMouseMove}
             onTouchMove={handleTouchMove}
@@ -62,10 +81,10 @@ export default function ReconstructionPage() {
           >
             {/* Before/After Labels */}
             <div className="absolute top-4 left-4 z-10 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full border border-outline-variant shadow-sm">
-              <span className="font-label-md text-label-md text-on-surface">BEFORE: Cloud-Obscured</span>
+              <span className="font-label-md text-label-md text-on-surface">BEFORE</span>
             </div>
             <div className="absolute top-4 right-4 z-10 bg-primary/10 backdrop-blur-sm px-3 py-1 rounded-full border border-primary/20 shadow-sm pointer-events-none">
-              <span className="font-label-md text-label-md text-primary">AFTER: AI Reconstructed</span>
+              <span className="font-label-md text-label-md text-primary">AFTER</span>
             </div>
 
             {/* Comparison Container */}
@@ -82,8 +101,8 @@ export default function ReconstructionPage() {
               {/* Before Image (Top, Clipped) */}
               <div className="absolute inset-0 overflow-hidden" style={{ width: `${sliderPosition}%` }}>
                 <img 
-                  className="absolute top-0 left-0 h-full w-[100vw] max-w-none object-cover pointer-events-none" 
-                  style={{ width: containerRef.current?.offsetWidth || '100%' }}
+                  className="absolute top-0 left-0 h-full max-w-none object-cover pointer-events-none" 
+                  style={{ width: containerWidth ? `${containerWidth}px` : '100%', maxWidth: 'none' }}
                   alt="Cloud Obscured" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpN2Ze9DO0bg5K6a-yZxx0T2tpHDP4paMoadeDV32k_aNS4kQEhou_ujV63DI7yUjxu_5oXx_XQ7h0ZflFnZwqs33kSwG7LJfN_uSL_cK2oWgRgDSSusQJqlW5Vxu-bK4U6pnkdBCtoLyHGFHElgeknYVTMxk7I8esy_W8DPklKSkQBQyOK298AMJ-aCfdzkWFiBaF0BCyIY0A6HXbQ18SFJSiMs5alziUojFti5eTz7c5DK86Y15l9oNdKYcWjLNaa5vHshqYiW8I" 
                 />
@@ -98,16 +117,20 @@ export default function ReconstructionPage() {
             </div>
 
             {/* Floating Map HUD (Glassmorphism) */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-white/70 backdrop-blur-md px-6 py-3 rounded-full border border-white/50 shadow-xl z-30 pointer-events-none">
-              <div className="flex items-center gap-2 pr-4 border-r border-outline-variant/30">
-                <Icon name="location_on" className="text-primary" />
-                <span className="font-mono-data text-mono-data">3.4653° S, 62.2159° W</span>
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col sm:flex-row items-center gap-2 sm:gap-4 bg-white/70 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-3 rounded-2xl sm:rounded-full border border-white/50 shadow-xl z-30 pointer-events-none w-[90%] sm:w-auto">
+              <div className="flex items-center justify-between w-full sm:w-auto gap-2 sm:pr-4 sm:border-r border-outline-variant/30">
+                <div className="flex items-center gap-1.5">
+                  <Icon name="location_on" className="text-primary text-sm sm:text-base" />
+                  <span className="font-mono-data text-[10px] sm:text-mono-data">3.4653° S, 62.2159° W</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 pr-4 border-r border-outline-variant/30">
-                <Icon name="calendar_today" className="text-secondary" />
-                <span className="font-mono-data text-mono-data">Acquired: 2024-10-12</span>
+              <div className="flex items-center justify-between w-full sm:w-auto gap-2 sm:pr-4 sm:border-r border-outline-variant/30">
+                <div className="flex items-center gap-1.5">
+                  <Icon name="calendar_today" className="text-secondary text-sm sm:text-base" />
+                  <span className="font-mono-data text-[10px] sm:text-mono-data">2024-10-12</span>
+                </div>
               </div>
-              <div className="flex items-center gap-4 pointer-events-auto">
+              <div className="flex items-center justify-center gap-4 pointer-events-auto w-full sm:w-auto pt-1 sm:pt-0 border-t sm:border-t-0 border-outline-variant/20">
                 <button className="p-1 hover:text-primary transition-colors"><Icon name="zoom_in" /></button>
                 <button className="p-1 hover:text-primary transition-colors"><Icon name="zoom_out" /></button>
                 <button className="p-1 hover:text-primary transition-colors"><Icon name="layers" /></button>
@@ -116,26 +139,26 @@ export default function ReconstructionPage() {
           </div>
 
           {/* Action Bar */}
-          <div className="bg-surface border border-outline-variant rounded-xl p-4 flex justify-between items-center">
-            <div className="flex gap-4">
-              <button className="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+          <div className="bg-surface border border-outline-variant rounded-xl p-4 flex flex-col md:flex-row gap-md justify-between items-stretch md:items-center">
+            <div className="flex flex-col sm:flex-row gap-sm">
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-primary text-white rounded font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
                 <Icon name="download" className="text-[20px]" />
-                Download Reconstructed TIFF
+                Download TIFF
               </button>
-              <button className="flex items-center gap-2 px-5 py-2.5 bg-surface border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-surface border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-container-low transition-colors">
                 <Icon name="image" className="text-[20px]" />
                 Export PNG
               </button>
             </div>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-secondary text-white rounded font-label-md text-label-md hover:opacity-90 transition-all">
+            <button className="w-full md:w-auto flex items-center justify-center gap-2 px-5 py-2.5 bg-secondary text-white rounded font-label-md text-label-md hover:opacity-90 transition-all">
               <Icon name="analytics" className="text-[20px]" />
-              Generate Quality Report
+              Generate Report
             </button>
           </div>
         </div>
 
         {/* Metrics Sidebar (Bento Style) */}
-        <div className="col-span-3 flex flex-col gap-lg overflow-y-auto">
+        <div className="col-span-1 lg:col-span-3 flex flex-col gap-lg lg:overflow-y-auto">
           <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-xs">Reconstruction Metrics</h3>
           
           {/* Metric Card 1 */}
